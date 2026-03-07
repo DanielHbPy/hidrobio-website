@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HidroBio — Horticultura de Precisión | Paraguay</title>
+  <meta name="description" content="Cultivos hidropónicos bajo invernadero en Paraguay. Lechugas, tomates, locotes y hierbas frescas, sin suelo, sin pesticidas, con sabor. Desde 2018.">
+  <meta name="keywords" content="hidrobio, hidroponía, Paraguay, invernadero, horticultura de precisión, tomates, lechuga, locote, agricultura sostenible">
+  <meta property="og:title" content="HidroBio — Horticultura de Precisión">
+  <meta property="og:description" content="Cultivamos el futuro de la alimentación en Paraguay. Productos hidropónicos frescos, sostenibles, de kilómetro cero.">
+  <meta property="og:image" content="/photos/hero-greenhouse.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hidrobio.com.py">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* =============================================
+       HidroBio Design System
+       ============================================= */
+    :root {
+      --green-primary: #1a7a4c;
+      --green-dark: #145c39;
+      --green-light: #e8f5ee;
+      --green-accent: #22c55e;
+      --navy: #0f1d2f;
+      --navy-light: #1b2d45;
+      --white: #ffffff;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-500: #6b7280;
+      --gray-700: #374151;
+      --gray-900: #111827;
+      --gold: #b8860b;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --nav-height: 72px;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font);
+      color: var(--gray-900);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-label {
+      font-size: clamp(0.75rem, 1vw, 0.875rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green-primary);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      color: var(--gray-900);
+    }
+
+    .section-subtitle {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      color: var(--gray-500);
+      max-width: 640px;
+      line-height: 1.7;
+    }
+
+    /* Animations */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =============================================
+       Navigation
+       ============================================= */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 0 24px;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .nav.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      height: 40px;
+      transition: filter 0.3s ease;
+    }
+
+    .nav:not(.scrolled) .nav-logo {
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .nav:not(.scrolled) .nav-links a {
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .nav:not(.scrolled) .nav-links a:hover {
+      color: var(--white);
+    }
+    .nav.scrolled .nav-links a {
+      color: var(--gray-700);
+    }
+    .nav.scrolled .nav-links a:hover {
+      color: var(--green-primary);
+    }
+
+    .nav-cta {
+      background: var(--green-primary);
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      transition: background 0.2s ease, transform 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-cta:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    /* Mobile menu */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      margin: 6px 0;
+      transition: all 0.3s ease;
+    }
+    .nav:not(.scrolled) .nav-toggle span { background: var(--white); }
+    .nav.scrolled .nav-toggle span { background: var(--gray-900); }
+
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--white);
+        flex-direction: column;
+        padding: 100px 40px 40px;
+        gap: 24px;
+        transition: right 0.3s ease;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+      }
+      .nav-links.open { right: 0; }
+      .nav-links a { color: var(--gray-900) !important; font-size: 1.1rem; }
+      .nav-cta { width: 100%; justify-content: center; }
+    }
+
+    /* =============================================
+       Hero
+       ============================================= */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('/photos/hero-greenhouse.jpg');
+      background-size: cover;
+      background-position: center;
+      animation: kenBurns 25s ease-in-out infinite alternate;
+    }
+
+    @keyframes kenBurns {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(15, 29, 47, 0.65) 0%,
+        rgba(15, 29, 47, 0.50) 50%,
+        rgba(15, 29, 47, 0.75) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 24px;
+    }
+
+    .hero-logo {
+      width: 220px;
+      margin: 0 auto 24px;
+      filter: brightness(0) invert(1);
+    }
+
+    .hero-tagline {
+      font-size: clamp(0.85rem, 1.2vw, 1rem);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--green-accent);
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--green-primary);
+      color: var(--white);
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(26, 122, 76, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .btn-outline:hover {
+      border-color: var(--white);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      animation: bounce 2s infinite;
+    }
+    .scroll-indicator svg {
+      width: 28px;
+      height: 28px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-8px); }
+      60% { transform: translateX(-50%) translateY(-4px); }
+    }
+
+    /* =============================================
+       Nosotros (About)
+       ============================================= */
+    .about {
+      padding: 120px 0;
+      background: var(--white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 1.1rem;
+      color: var(--gray-700);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+
+    .about-image {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    }
+    .about-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    /* Stats */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin: 64px 0;
+      padding: 48px 0;
+      border-top: 1px solid var(--gray-200);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--green-primary);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+
+    /* Credentials */
+    .credentials {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 48px;
+      padding: 32px;
+      background: var(--gray-50);
+      border-radius: 16px;
+    }
+
+    .credential-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .credential-item img {
+      height: 56px;
+      width: auto;
+      object-fit: contain;
+      filter: grayscale(30%);
+      transition: filter 0.3s ease;
+    }
+    .credential-item:hover img {
+      filter: grayscale(0%);
+    }
+
+    .credential-item span {
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    }
+
+    /* =============================================
+       Productos
+       ============================================= */
+    .products {
+      padding: 120px 0;
+      background: var(--gray-50);
+    }
+
+    .products-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .products-header .section-subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-card-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .product-card-body {
+      padding: 24px;
+    }
+
+    .product-card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .product-card-desc {
+      font-size: 0.9rem;
+      color: var(--gray-500);
+      line-height: 1.6;
+    }
+
+    .product-card-varieties {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .variety-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 50px;
+      background: var(--green-light);
+      color: var(--green-primary);
+    }
+
+    .products-cta {
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+      color: var(--white);
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-whatsapp:hover {
+      background: #1ebd5a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+    }
+
+    @media (max-width: 1024px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .product-grid { grid-template-columns: 1fr; }
+    }
+
+    /* =============================================
+       Tecnologia
+       ============================================= */
+    .tech {
+      position: relative;
+      padding: 120px 0;
+      background: var(--navy);
+      overflow: hidden;
+    }
+
+    .tech-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('/photos/interior-cherry.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      opacity: 0.15;
+    }
+
+    .tech .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .tech .section-label { color: var(--green-accent); }
+    .tech .section-title { color: var(--white); }
+    .tech .section-subtitle { color: rgba(255, 255, 255, 0.65); }
+
+    .tech-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .tech-header .section-subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    .tech-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .tech-card:hover {
+      background: rgba(255, 255, 255, 0.14);
+      transform: translateY(-4px);
+    }
+
+    .tech-card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .tech-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .tech-card-desc {
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.6;
+    }
+
+    /* Impact stats */
+    .impact-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      padding: 48px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .impact-item {
+      text-align: center;
+    }
+    .impact-number {
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 800;
+      color: var(--green-accent);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .impact-label {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.55);
+      font-weight: 500;
+    }
+
+    @media (max-width: 1024px) {
+      .tech-grid { grid-template-columns: repeat(2, 1fr); }
+      .impact-row { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    }
+    @media (max-width: 480px) {
+      .tech-grid { grid-template-columns: 1fr; }
+      .tech-bg { background-attachment: scroll; }
+    }
+
+    /* =============================================
+       Academia
+       ============================================= */
+    .academy {
+      padding: 120px 0;
+      background: var(--white);
+    }
+
+    .academy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .academy-image {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    }
+    .academy-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .academy-text p {
+      font-size: 1.05rem;
+      color: var(--gray-700);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+
+    .instructor-row {
+      display: flex;
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .instructor {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .instructor img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .instructor-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .instructor-role {
+      font-size: 0.8rem;
+      color: var(--gray-500);
+    }
+
+    .academy-cta {
+      margin-top: 32px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      .academy-grid { grid-template-columns: 1fr; gap: 40px; }
+      .instructor-row { flex-direction: column; }
+    }
+
+    /* =============================================
+       Prensa
+       ============================================= */
+    .press {
+      padding: 120px 0;
+      background: var(--gray-50);
+    }
+
+    .press-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    /* Awards row */
+    .awards-row {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .award-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      max-width: 160px;
+      text-align: center;
+    }
+
+    .award-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+
+    .award-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gray-700);
+      line-height: 1.3;
+    }
+
+    /* Press cards */
+    .press-scroll {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .press-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 28px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .press-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    .press-source {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--green-primary);
+    }
+
+    .press-headline {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--gray-900);
+      flex: 1;
+    }
+
+    .press-link {
+      font-size: 0.85rem;
+      color: var(--green-primary);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .press-link:hover { text-decoration: underline; }
+
+    @media (max-width: 1024px) {
+      .press-scroll { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .press-scroll { grid-template-columns: 1fr; }
+    }
+
+    /* =============================================
+       Ubicaciones
+       ============================================= */
+    .locations {
+      padding: 120px 0;
+      background: var(--white);
+    }
+
+    .locations-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .location-card {
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: box-shadow 0.3s ease;
+    }
+    .location-card:hover {
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    .location-card-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .location-card-body {
+      padding: 28px;
+    }
+
+    .location-card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .location-card-address {
+      font-size: 0.95rem;
+      color: var(--gray-500);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .location-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--green-primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .location-card-link:hover { text-decoration: underline; }
+
+    .visit-cta {
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    @media (max-width: 640px) {
+      .locations-grid { grid-template-columns: 1fr; }
+    }
+
+    /* =============================================
+       Contacto
+       ============================================= */
+    .contact {
+      padding: 120px 0;
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .contact .section-label { color: var(--green-accent); }
+    .contact .section-title { color: var(--white); }
+    .contact .section-subtitle { color: rgba(255, 255, 255, 0.6); margin-left: auto; margin-right: auto; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .contact-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .contact-card-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .contact-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .contact-card-desc {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 16px;
+    }
+
+    .contact-card-btn {
+      background: #25d366;
+      color: var(--white);
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s ease;
+    }
+    .contact-card-btn:hover { background: #1ebd5a; }
+
+    .contact-extras {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      padding-top: 48px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-extra {
+      text-align: center;
+    }
+    .contact-extra-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 8px;
+    }
+    .contact-extra a {
+      color: var(--green-accent);
+      font-weight: 600;
+    }
+    .contact-extra a:hover { text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    /* =============================================
+       Footer
+       ============================================= */
+    .footer {
+      padding: 40px 0;
+      background: var(--gray-900);
+      color: rgba(255, 255, 255, 0.5);
+      text-align: center;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-logo {
+      height: 32px;
+      filter: brightness(0) invert(1);
+      opacity: 0.6;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-social a {
+      color: rgba(255, 255, 255, 0.5);
+      transition: color 0.2s ease;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .footer-social a:hover { color: var(--white); }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      width: 100%;
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .footer-inner { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== Navigation ========== -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#"><img src="/assets/logo.png" alt="HidroBio" class="nav-logo"></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#tecnologia">Tecnología</a></li>
+        <li><a href="#academia">Academia</a></li>
+        <li><a href="#prensa">Prensa</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="https://wa.me/595986610012" target="_blank" rel="noopener" class="nav-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Hacé tu Pedido
+        </a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ========== Hero ========== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <img src="/assets/logo.png" alt="HidroBio" class="hero-logo">
+      <p class="hero-tagline">Horticultura de Precisión</p>
+      <h1 class="hero-title">Cultivamos el futuro de la alimentación en Paraguay</h1>
+      <p class="hero-sub">Productos hidropónicos frescos, sin suelo, sin pesticidas. Calidad superior en cada cosecha, sostenibilidad como prioridad.</p>
+      <div class="hero-buttons">
+        <a href="https://wa.me/595986610012" target="_blank" rel="noopener" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Hacé tu Pedido
+        </a>
+        <a href="#nosotros" class="btn-outline">Conocenos</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </div>
+  </section>
+
+  <!-- ========== Nosotros ========== -->
+  <section class="about" id="nosotros">
+    <div class="container">
+      <div class="about-grid fade-up">
+        <div class="about-text">
+          <p class="section-label">Nuestra Historia</p>
+          <h2 class="section-title">Desde 2018, redefiniendo la agricultura en Paraguay</h2>
+          <p>En HidroBio creemos que el futuro de la alimentación es local, ecológico y sostenible. Lo que comenzó como un pequeño invernadero de lechugas hidropónicas se convirtió en el AgroPark más ambicioso de la región.</p>
+          <p>Hoy operamos 1.5 hectáreas de invernaderos de alta tecnología con sistemas de climatización Priva, produciendo tomates, locotes, lechugas y hierbas frescas los 365 días del año, sin pesticidas y con 90% menos de agua.</p>
+        </div>
+        <div class="about-image">
+          <img src="/photos/aerial-drone.jpg" alt="Vista aérea del AgroPark HidroBio en Nueva Italia, Paraguay">
+        </div>
+      </div>
+
+      <div class="stats-row fade-up">
+        <div class="stat-item">
+          <div class="stat-number">8+</div>
+          <div class="stat-label">Años de experiencia</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">1.5 ha</div>
+          <div class="stat-label">Invernaderos activos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Clientes B2B</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">16K+</div>
+          <div class="stat-label">Comunidad digital</div>
+        </div>
+      </div>
+
+      <div class="credentials fade-up">
+        <div class="credential-item">
+          <img src="/photos/marca-pais-certificate-digital.jpg" alt="Marca País Paraguay">
+          <span>Marca País</span>
+        </div>
+        <div class="credential-item">
+          <img src="/photos/sello-verde-eu-banners.jpg" alt="Sello Verde Paraguay">
+          <span>Sello Verde</span>
+        </div>
+        <div class="credential-item">
+          <img src="/photos/premio-ahk-ceremony.jpeg" alt="Premio AHK 2025">
+          <span>AHK #1</span>
+        </div>
+        <div class="credential-item">
+          <img src="/photos/sello-verde-eu-banners.jpg" alt="AL-Invest Verde">
+          <span>AL-Invest Verde</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Productos ========== -->
+  <section class="products" id="productos">
+    <div class="container">
+      <div class="products-header fade-up">
+        <p class="section-label">Nuestros Productos</p>
+        <h2 class="section-title">Sin suelo, sin pesticidas, con sabor</h2>
+        <p class="section-subtitle">Cultivados bajo invernadero con tecnología de punta, nuestros productos llegan frescos a tu mesa o negocio todos los días del año.</p>
+      </div>
+
+      <div class="product-grid">
+        <div class="product-card fade-up">
+          <img src="/photos/lettuce-varieties.jpg" alt="Lechugas hidropónicas HidroBio" class="product-card-img">
+          <div class="product-card-body">
+            <h3 class="product-card-title">Lechugas</h3>
+            <p class="product-card-desc">Frescura y crocancia garantizada. Cultivadas en NFT hidropónico, listas para consumir.</p>
+            <div class="product-card-varieties">
+              <span class="variety-tag">Pirati</span>
+              <span class="variety-tag">Mantecosa</span>
+              <span class="variety-tag">Morada</span>
+              <span class="variety-tag">Crystal</span>
+              <span class="variety-tag">Mimosa</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card fade-up">
+          <img src="/photos/interior-cherry.jpg" alt="Tomates hidropónicos HidroBio" class="product-card-img">
+          <div class="product-card-body">
+            <h3 class="product-card-title">Tomates</h3>
+            <p class="product-card-desc">Sabor intenso, madurados en planta. Cultivados en sustrato de fibra de coco con nutrición de precisión.</p>
+            <div class="product-card-varieties">
+              <span class="variety-tag">Lisa</span>
+              <span class="variety-tag">Perita</span>
+              <span class="variety-tag">Cherry 250g</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card fade-up">
+          <img src="/photos/retail-display-wide.jpg" alt="Locotes y morrones HidroBio" class="product-card-img">
+          <div class="product-card-body">
+            <h3 class="product-card-title">Locotes y Morrones</h3>
+            <p class="product-card-desc">Color vibrante, textura firme. Producción continua todo el año, sin depender del clima.</p>
+            <div class="product-card-varieties">
+              <span class="variety-tag">Rojo</span>
+              <span class="variety-tag">Verde</span>
+              <span class="variety-tag">Amarillo</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card fade-up">
+          <img src="/photos/young-plants-greenhouse.jpg" alt="Hierbas y verdeos HidroBio" class="product-card-img">
+          <div class="product-card-body">
+            <h3 class="product-card-title">Hierbas y Verdeos</h3>
+            <p class="product-card-desc">Aromáticas frescas para tu cocina. Cosechadas el mismo día de entrega.</p>
+            <div class="product-card-varieties">
+              <span class="variety-tag">Rúcula</span>
+              <span class="variety-tag">Albahaca</span>
+              <span class="variety-tag">Cebollita</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="products-cta fade-up">
+        <a href="https://wa.me/595986610012" target="_blank" rel="noopener" class="btn-whatsapp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Pedí por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Tecnología ========== -->
+  <section class="tech" id="tecnologia">
+    <div class="tech-bg"></div>
+    <div class="container">
+      <div class="tech-header fade-up">
+        <p class="section-label">Nuestra Tecnología</p>
+        <h2 class="section-title">Invernaderos de clase mundial en el corazón de Paraguay</h2>
+        <p class="section-subtitle">Tecnología holandesa adaptada al trópico sudamericano. Automatización completa para producción continua los 365 días del año.</p>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-card fade-up">
+          <span class="tech-card-icon">🖥️</span>
+          <h3 class="tech-card-title">Computadora Climática Priva</h3>
+          <p class="tech-card-desc">Control automatizado de temperatura, humedad y ventilación con recetas de cultivo personalizadas.</p>
+        </div>
+        <div class="tech-card fade-up">
+          <span class="tech-card-icon">🥥</span>
+          <h3 class="tech-card-title">Sustrato de Fibra de Coco</h3>
+          <p class="tech-card-desc">Importado de Sri Lanka. Medio de cultivo premium que reemplaza el suelo con mayor control y rendimiento.</p>
+        </div>
+        <div class="tech-card fade-up">
+          <span class="tech-card-icon">💨</span>
+          <h3 class="tech-card-title">Ventilación Automática</h3>
+          <p class="tech-card-desc">Ventanas de techo motorizadas y ventiladores eléctricos responden en tiempo real a las condiciones climáticas.</p>
+        </div>
+        <div class="tech-card fade-up">
+          <span class="tech-card-icon">💧</span>
+          <h3 class="tech-card-title">Riego de Precisión</h3>
+          <p class="tech-card-desc">Sistema de fertirriego automatizado que dosifica agua y nutrientes exactos para cada cultivo.</p>
+        </div>
+      </div>
+
+      <div class="impact-row fade-up">
+        <div class="impact-item">
+          <div class="impact-number">90%</div>
+          <div class="impact-label">Menos agua</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-number">10x</div>
+          <div class="impact-label">Más productividad</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-number">95%</div>
+          <div class="impact-label">Menos pesticidas</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-number">365</div>
+          <div class="impact-label">Días al año</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Academia ========== -->
+  <section class="academy" id="academia">
+    <div class="container">
+      <div class="academy-grid">
+        <div class="academy-image fade-up">
+          <img src="/photos/young-plants-greenhouse.jpg" alt="HidroBio La Academia — formación en hidroponía">
+        </div>
+        <div class="academy-text fade-up">
+          <p class="section-label">HidroBio La Academia</p>
+          <h2 class="section-title">Formamos a los productores del futuro</h2>
+          <p>Lanzada en noviembre de 2024, La Academia es nuestra plataforma de formación en agricultura hidropónica sostenible. Ofrecemos cursos presenciales y en línea para productores que quieren dar el salto a la horticultura de precisión.</p>
+          <p>Nuestros cursos combinan teoría con práctica directa en nuestros invernaderos, cubriendo desde el manejo climático hasta la prevención de enfermedades como Pythium en verano.</p>
+
+          <div class="instructor-row">
+            <div class="instructor">
+              <img src="/photos/maxi.jpg" alt="Maximiliano Samaniego">
+              <div>
+                <div class="instructor-name">Maximiliano Samaniego</div>
+                <div class="instructor-role">CEO &amp; Ing. Agrónomo</div>
+              </div>
+            </div>
+            <div class="instructor">
+              <img src="/photos/wilson.jpg" alt="Wilson Sánchez">
+              <div>
+                <div class="instructor-name">Wilson Sánchez</div>
+                <div class="instructor-role">Director Técnico</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="academy-cta">
+            <a href="mailto:academia@hidrobio.com.py" class="btn-primary">Inscribite</a>
+            <a href="tel:+595971315428" class="btn-outline" style="color: var(--gray-700); border-color: var(--gray-300);">+595 971 315 428</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Prensa ========== -->
+  <section class="press" id="prensa">
+    <div class="container">
+      <div class="press-header fade-up">
+        <p class="section-label">Prensa y Reconocimientos</p>
+        <h2 class="section-title">Lo que dicen de nosotros</h2>
+      </div>
+
+      <div class="awards-row fade-up">
+        <div class="award-item">
+          <div class="award-icon" style="background: #fff3cd; color: #b8860b;">🏆</div>
+          <span class="award-name">Premio AHK 2025<br>1er Puesto — Política Ambiental</span>
+        </div>
+        <div class="award-item">
+          <div class="award-icon" style="background: #dbeafe; color: #1d4ed8;">🇵🇾</div>
+          <span class="award-name">Marca País<br>Paraguay</span>
+        </div>
+        <div class="award-item">
+          <div class="award-icon" style="background: #d1fae5; color: #059669;">🌿</div>
+          <span class="award-name">Sello Verde<br>Paraguay</span>
+        </div>
+        <div class="award-item">
+          <div class="award-icon" style="background: #ede9fe; color: #7c3aed;">🇪🇺</div>
+          <span class="award-name">AL-Invest Verde<br>Unión Europea</span>
+        </div>
+      </div>
+
+      <div class="press-scroll">
+        <a href="https://www.hortidaily.com/article/9686585/growing-and-educating-in-paraguay/" target="_blank" rel="noopener" class="press-card fade-up">
+          <span class="press-source">HortiDaily</span>
+          <span class="press-headline">Growing and educating in Paraguay</span>
+          <span class="press-link">Leer artículo →</span>
+        </a>
+        <a href="https://www.hortidaily.com/article/9758398/strengthening-paraguay-s-commitment-to-precision-hydroponic-production/" target="_blank" rel="noopener" class="press-card fade-up">
+          <span class="press-source">HortiDaily</span>
+          <span class="press-headline">Strengthening Paraguay's commitment to precision hydroponic production</span>
+          <span class="press-link">Leer artículo →</span>
+        </a>
+        <a href="https://www.hortidaily.es/article/9809580/hidrobio-lanza-sus-tomates-cherry-hidroponicos-redefiniendo-la-experiencia-del-consumidor-paraguayo/" target="_blank" rel="noopener" class="press-card fade-up">
+          <span class="press-source">HortiDaily ES</span>
+          <span class="press-headline">HidroBio lanza sus tomates cherry hidropónicos redefiniendo la experiencia del consumidor</span>
+          <span class="press-link">Leer artículo →</span>
+        </a>
+        <a href="https://www.hortidaily.com/article/9732387/paraguay-hidrobio-joins-al-invest-verde/" target="_blank" rel="noopener" class="press-card fade-up">
+          <span class="press-source">HortiDaily</span>
+          <span class="press-headline">Paraguay: HidroBio joins AL-Invest Verde</span>
+          <span class="press-link">Leer artículo →</span>
+        </a>
+        <a href="https://www.lanacion.com.py/pais/2024/11/07/lanzan-curso-para-cultivar-lechugas-hidroponicas-en-nueva-italia/" target="_blank" rel="noopener" class="press-card fade-up">
+          <span class="press-source">La Nación</span>
+          <span class="press-headline">Lanzan curso para cultivar lechugas hidropónicas en Nueva Italia</span>
+          <span class="press-link">Leer artículo →</span>
+        </a>
+        <a href="https://open.spotify.com/episode/4x4Dg0OHZ5HPODhnAgEuYP" target="_blank" rel="noopener" class="press-card fade-up">
+          <span class="press-source">Spotify Podcast</span>
+          <span class="press-headline">Mi Viaje Por La Hidroponía — Ep.47 con Maximiliano Samaniego</span>
+          <span class="press-link">Escuchar →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Ubicaciones ========== -->
+  <section class="locations" id="ubicaciones">
+    <div class="container">
+      <div class="locations-header fade-up">
+        <p class="section-label">Nuestras Ubicaciones</p>
+        <h2 class="section-title">Visitanos</h2>
+      </div>
+
+      <div class="locations-grid">
+        <div class="location-card fade-up">
+          <img src="/photos/aerial-drone.jpg" alt="Invernadero HidroBio en Nueva Italia" class="location-card-img">
+          <div class="location-card-body">
+            <h3 class="location-card-title">🌱 Invernadero</h3>
+            <p class="location-card-address">Ruta D072, Nueva Italia<br>Central, Paraguay 111102</p>
+            <a href="https://g.page/r/CcJMSY5J6IfmEAI/" target="_blank" rel="noopener" class="location-card-link">Ver en Google Maps →</a>
+          </div>
+        </div>
+        <div class="location-card fade-up">
+          <img src="/photos/construction.jpg" alt="Hub Logístico HidroBio en Fernando de la Mora" class="location-card-img">
+          <div class="location-card-body">
+            <h3 class="location-card-title">🚛 Hub Logístico</h3>
+            <p class="location-card-address">Leonismo Fernandino 315<br>Fernando de la Mora, Central 110308</p>
+            <a href="https://g.page/r/CZ2_cqhlXDgVEBM" target="_blank" rel="noopener" class="location-card-link">Ver en Google Maps →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="visit-cta fade-up">
+        <a href="https://zfrmz.com/hsHl7Hg1uznLuGV1ygFS" target="_blank" rel="noopener" class="btn-primary">Solicita tu Visita</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Contacto ========== -->
+  <section class="contact" id="contacto">
+    <div class="container">
+      <div class="contact-header fade-up">
+        <p class="section-label">Contacto</p>
+        <h2 class="section-title">Hablemos</h2>
+        <p class="section-subtitle">Elegí el canal que mejor te sirva para comunicarte con nosotros.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card fade-up">
+          <div class="contact-card-icon">🛒</div>
+          <h3 class="contact-card-title">Pedidos</h3>
+          <p class="contact-card-desc">Hacé tu pedido y disfrutá de frescura y sabor cultivados sin suelo.</p>
+          <a href="https://wa.me/595986610012" target="_blank" rel="noopener" class="contact-card-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp Pedidos
+          </a>
+        </div>
+
+        <div class="contact-card fade-up">
+          <div class="contact-card-icon">💬</div>
+          <h3 class="contact-card-title">Consultas</h3>
+          <p class="contact-card-desc">Dudas, consultas generales o atención al cliente.</p>
+          <a href="https://wa.me/595981982430" target="_blank" rel="noopener" class="contact-card-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp SAC
+          </a>
+        </div>
+
+        <div class="contact-card fade-up">
+          <div class="contact-card-icon">🏗️</div>
+          <h3 class="contact-card-title">Invernaderos e Insumos</h3>
+          <p class="contact-card-desc">Interesado en montaje de invernaderos o insumos agrícolas.</p>
+          <a href="https://wa.me/595972858555" target="_blank" rel="noopener" class="contact-card-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp Ventas
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-extras fade-up">
+        <div class="contact-extra">
+          <div class="contact-extra-label">Email</div>
+          <a href="mailto:hola@hidrobio.com.py">hola@hidrobio.com.py</a>
+        </div>
+        <div class="contact-extra">
+          <div class="contact-extra-label">Inversores</div>
+          <a href="https://investors.hidrobio.com.py" target="_blank" rel="noopener">investors.hidrobio.com.py</a>
+        </div>
+        <div class="contact-extra">
+          <div class="contact-extra-label">Reseñas</div>
+          <a href="https://g.page/r/CZ2_cqhlXDgVEAI/review" target="_blank" rel="noopener">Dejanos tu reseña</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <img src="/assets/logo.png" alt="HidroBio" class="footer-logo">
+        <div class="footer-social">
+          <a href="https://instagram.com/hidrobiopy" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/hidrobiopy" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.linkedin.com/company/hidrobio" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.youtube.com/@HidroBio" target="_blank" rel="noopener">YouTube</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 HidroBio S.A. — Hecho en Paraguay</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== JavaScript ========== -->
+  <script>
+    // Sticky nav
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile menu toggle
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      links.classList.toggle('open');
+    });
+    // Close mobile menu on link click
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => links.classList.remove('open'));
+    });
+
+    // Intersection Observer — fade up animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 72;
+          window.scrollTo({
+            top: target.offsetTop - offset,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
