@@ -136,13 +136,14 @@
     }
 
     .nav-logo {
-      height: 40px;
-      transition: filter 0.3s ease;
+      height: 36px;
+      transition: opacity 0.3s ease;
     }
 
-    .nav:not(.scrolled) .nav-logo {
-      filter: brightness(0) invert(1);
-    }
+    .nav-logo.colored { display: none; }
+    .nav-logo.white { display: block; }
+    .nav.scrolled .nav-logo.colored { display: block; }
+    .nav.scrolled .nav-logo.white { display: none; }
 
     .nav-links {
       display: flex;
@@ -273,9 +274,8 @@
     }
 
     .hero-logo {
-      width: 220px;
+      width: clamp(320px, 40vw, 480px);
       margin: 0 auto 24px;
-      filter: brightness(0) invert(1);
     }
 
     .hero-tagline {
@@ -452,10 +452,11 @@
     }
 
     .credential-item img {
-      height: 56px;
+      height: 160px;
       width: auto;
       object-fit: contain;
-      filter: grayscale(30%);
+      border-radius: 8px;
+      filter: grayscale(20%);
       transition: filter 0.3s ease;
     }
     .credential-item:hover img {
@@ -1062,8 +1063,7 @@
     }
 
     .footer-logo {
-      height: 32px;
-      filter: brightness(0) invert(1);
+      height: 28px;
       opacity: 0.6;
     }
 
@@ -1097,7 +1097,10 @@
   <!-- ========== Navigation ========== -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a href="#"><img src="/assets/logo.png" alt="HidroBio" class="nav-logo"></a>
+      <a href="#">
+        <img src="/assets/logo-white.svg" alt="HidroBio" class="nav-logo white">
+        <img src="/assets/logo.svg" alt="HidroBio" class="nav-logo colored">
+      </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#productos">Productos</a></li>
@@ -1121,7 +1124,7 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <img src="/assets/logo.png" alt="HidroBio" class="hero-logo">
+      <img src="/assets/logo-white.svg" alt="HidroBio" class="hero-logo">
       <p class="hero-tagline">Horticultura de Precisión</p>
       <h1 class="hero-title">Cultivamos el futuro de la alimentación en Paraguay</h1>
       <p class="hero-sub">Productos hidropónicos frescos, sin suelo, sin pesticidas. Calidad superior en cada cosecha, sostenibilidad como prioridad.</p>
@@ -1517,7 +1520,7 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-inner">
-        <img src="/assets/logo.png" alt="HidroBio" class="footer-logo">
+        <img src="/assets/logo-white.svg" alt="HidroBio" class="footer-logo">
         <div class="footer-social">
           <a href="https://instagram.com/hidrobiopy" target="_blank" rel="noopener">Instagram</a>
           <a href="https://www.facebook.com/hidrobiopy" target="_blank" rel="noopener">Facebook</a>
