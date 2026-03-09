@@ -61,9 +61,9 @@ function handleRequest(req, res) {
     return;
   }
 
-  // Root serves index.html
-  if (pathname === '/') {
-    pathname = '/index.html';
+  // Directory index: serve index.html for paths ending in /
+  if (pathname.endsWith('/')) {
+    pathname += 'index.html';
   }
 
   const filePath = path.join(__dirname, 'public', pathname);
