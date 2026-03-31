@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HidroBio — The Film</title>
+  <meta name="description" content="It's Time to Grow Differently. A cinematic brand film by HidroBio.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #22c55e;
+      --green-deep: #1a7a4c;
+      --green-glow: rgba(34, 197, 94, 0.12);
+      --dark: #050a07;
+      --white: #f0fdf4;
+      --gray: #9ca3af;
+      --font: 'Inter', -apple-system, sans-serif;
+      --serif: 'Playfair Display', Georgia, serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: #000;
+      color: var(--white);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      cursor: none;
+    }
+
+    /* ---- Custom cursor ---- */
+    .cursor {
+      position: fixed;
+      width: 40px; height: 40px;
+      border: 1px solid rgba(34, 197, 94, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s, opacity 0.3s;
+      transform: translate(-50%, -50%);
+    }
+    .cursor.clicking { transform: translate(-50%, -50%) scale(0.8); }
+
+    /* ---- Film container ---- */
+    .film {
+      position: fixed;
+      inset: 0;
+      background: #000;
+    }
+
+    /* ---- Scenes ---- */
+    .scene {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1.5s ease, visibility 0s 1.5s;
+      z-index: 1;
+    }
+
+    .scene.active {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 1.5s ease, visibility 0s 0s;
+      z-index: 2;
+    }
+
+    .scene-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.15);
+      transition: transform 8s ease-out;
+    }
+
+    .scene.active .scene-bg {
+      transform: scale(1);
+    }
+
+    .scene-overlay {
+      position: absolute;
+      inset: 0;
+    }
+
+    .scene-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+      padding: 0 48px;
+    }
+
+    /* ---- Text animations ---- */
+    .text-reveal {
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .text-reveal span {
+      display: inline-block;
+      transform: translateY(110%);
+      transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .scene.active .text-reveal span {
+      transform: translateY(0);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease 0.3s, transform 1s ease 0.3s;
+    }
+
+    .scene.active .fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-slow {
+      opacity: 0;
+      transition: opacity 1.5s ease 0.8s;
+    }
+
+    .scene.active .fade-in-slow {
+      opacity: 1;
+    }
+
+    .fade-in-d1 { transition-delay: 0.5s !important; }
+    .fade-in-d2 { transition-delay: 1s !important; }
+    .fade-in-d3 { transition-delay: 1.5s !important; }
+    .fade-in-d4 { transition-delay: 2s !important; }
+    .fade-in-d5 { transition-delay: 2.5s !important; }
+
+    /* ---- Typography ---- */
+    .scene-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 24px;
+    }
+
+    .scene-title {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .scene-title em {
+      color: var(--green);
+      font-style: italic;
+    }
+
+    .scene-subtitle {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: var(--gray);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .scene-big-text {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .scene-big-text .hl {
+      color: var(--green);
+      font-style: italic;
+    }
+
+    /* ---- Stats row ---- */
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 64px;
+      margin-top: 48px;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-lbl {
+      font-size: 0.75rem;
+      color: var(--gray);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ---- Pillar cards (inline) ---- */
+    .pillars-row {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      margin-top: 48px;
+    }
+
+    .pill {
+      background: rgba(34, 197, 94, 0.06);
+      border: 1px solid rgba(34, 197, 94, 0.15);
+      padding: 32px 24px;
+      width: 240px;
+      text-align: center;
+    }
+
+    .pill-num {
+      font-size: 0.7rem;
+      color: var(--green);
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+    }
+
+    .pill-name {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .pill-desc {
+      font-size: 0.8rem;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    /* ---- Quote ---- */
+    .quote-mark {
+      font-size: 5rem;
+      color: var(--green);
+      opacity: 0.3;
+      font-family: var(--serif);
+      line-height: 1;
+    }
+
+    .quote-text {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 3vw, 2.2rem);
+      font-style: italic;
+      line-height: 1.5;
+      max-width: 700px;
+      margin: -16px auto 24px;
+    }
+
+    .quote-author {
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    .quote-author strong {
+      color: var(--green);
+    }
+
+    /* ---- CTA button ---- */
+    .cta {
+      display: inline-block;
+      padding: 18px 48px;
+      border: 1px solid var(--green);
+      color: var(--green);
+      font-family: var(--font);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: none;
+      transition: all 0.4s;
+    }
+
+    .cta:hover {
+      background: var(--green);
+      color: #000;
+      box-shadow: 0 0 40px rgba(34, 197, 94, 0.3);
+    }
+
+    /* ---- Play button (start screen) ---- */
+    .play-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: none;
+      transition: opacity 1s, visibility 0s 1s;
+    }
+
+    .play-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .play-logo {
+      height: 48px;
+      filter: brightness(0) invert(1);
+      opacity: 0.6;
+      margin-bottom: 48px;
+    }
+
+    .play-btn {
+      width: 100px;
+      height: 100px;
+      border: 2px solid rgba(34, 197, 94, 0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: none;
+      transition: all 0.5s;
+      position: relative;
+    }
+
+    .play-btn::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border: 1px solid rgba(34, 197, 94, 0.15);
+      border-radius: 50%;
+      animation: playPulse 2s infinite;
+    }
+
+    @keyframes playPulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.15); opacity: 0; }
+    }
+
+    .play-btn:hover {
+      border-color: var(--green);
+      box-shadow: 0 0 40px rgba(34, 197, 94, 0.2);
+      transform: scale(1.05);
+    }
+
+    .play-triangle {
+      width: 0;
+      height: 0;
+      border-left: 22px solid var(--green);
+      border-top: 14px solid transparent;
+      border-bottom: 14px solid transparent;
+      margin-left: 6px;
+    }
+
+    .play-text {
+      margin-top: 24px;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    /* ---- Progress bar ---- */
+    .progress-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      background: var(--green);
+      z-index: 50;
+      transition: width 0.3s linear;
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+    }
+
+    /* ---- Scene counter ---- */
+    .scene-counter {
+      position: fixed;
+      bottom: 24px;
+      right: 32px;
+      z-index: 50;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.3);
+      letter-spacing: 2px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ---- Nav dots ---- */
+    .nav-dots {
+      position: fixed;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      cursor: none;
+      transition: all 0.4s;
+    }
+
+    .nav-dot.active {
+      background: var(--green);
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+    }
+
+    .nav-dot:hover {
+      background: rgba(34, 197, 94, 0.5);
+    }
+
+    /* ---- Pause indicator ---- */
+    .pause-indicator {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      z-index: 60;
+      display: flex;
+      gap: 8px;
+      opacity: 0;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .pause-indicator.show {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+
+    .pause-bar {
+      width: 6px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 2px;
+    }
+
+    /* ---- Letterbox ---- */
+    .letterbox-top, .letterbox-bottom {
+      position: fixed;
+      left: 0;
+      right: 0;
+      height: 8vh;
+      background: #000;
+      z-index: 40;
+    }
+    .letterbox-top { top: 0; }
+    .letterbox-bottom { bottom: 0; }
+
+    /* ---- Particle canvas ---- */
+    #particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0.3;
+    }
+
+    /* ---- Sound toggle ---- */
+    .sound-toggle {
+      position: fixed;
+      bottom: 24px;
+      left: 32px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: none;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .sound-toggle:hover { color: var(--green); }
+
+    .sound-icon {
+      width: 18px;
+      height: 18px;
+      position: relative;
+    }
+
+    .sound-icon .bar {
+      position: absolute;
+      bottom: 2px;
+      width: 3px;
+      background: currentColor;
+      border-radius: 1px;
+      transition: height 0.3s;
+    }
+
+    .sound-icon .bar:nth-child(1) { left: 0; height: 6px; animation: soundBar1 1.2s ease infinite; }
+    .sound-icon .bar:nth-child(2) { left: 5px; height: 12px; animation: soundBar2 1s ease infinite; }
+    .sound-icon .bar:nth-child(3) { left: 10px; height: 8px; animation: soundBar3 1.4s ease infinite; }
+    .sound-icon .bar:nth-child(4) { left: 15px; height: 14px; animation: soundBar4 0.9s ease infinite; }
+
+    .sound-toggle.muted .sound-icon .bar { height: 3px !important; animation: none !important; }
+
+    @keyframes soundBar1 { 0%,100% { height: 6px; } 50% { height: 14px; } }
+    @keyframes soundBar2 { 0%,100% { height: 12px; } 50% { height: 5px; } }
+    @keyframes soundBar3 { 0%,100% { height: 8px; } 50% { height: 15px; } }
+    @keyframes soundBar4 { 0%,100% { height: 14px; } 50% { height: 7px; } }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 768px) {
+      .stats-row { flex-direction: column; gap: 24px; }
+      .pillars-row { flex-direction: column; align-items: center; }
+      .pill { width: 100%; max-width: 280px; }
+      .nav-dots { display: none; }
+      .scene-content { padding: 0 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <canvas id="particles"></canvas>
+
+  <!-- Letterbox bars -->
+  <div class="letterbox-top"></div>
+  <div class="letterbox-bottom"></div>
+
+  <!-- Play Screen -->
+  <div class="play-screen" id="playScreen">
+    <img src="/assets/logo-white.svg" alt="HidroBio" class="play-logo">
+    <div class="play-btn" id="playBtn">
+      <div class="play-triangle"></div>
+    </div>
+    <p class="play-text">Watch the film</p>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+  <div class="scene-counter" id="sceneCounter"></div>
+
+  <!-- Nav dots -->
+  <div class="nav-dots" id="navDots"></div>
+
+  <!-- Sound toggle -->
+  <div class="sound-toggle" id="soundToggle" onclick="toggleMute()">
+    <div class="sound-icon">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <span id="soundLabel">Sound on</span>
+  </div>
+
+  <!-- Pause -->
+  <div class="pause-indicator" id="pauseIndicator">
+    <div class="pause-bar"></div>
+    <div class="pause-bar"></div>
+  </div>
+
+  <!-- ======== FILM ======== -->
+  <div class="film" id="film">
+
+    <!-- Scene 0: Black + Logo -->
+    <div class="scene" data-duration="4000">
+      <div class="scene-overlay" style="background: #000"></div>
+      <div class="scene-content">
+        <img src="/assets/logo-white.svg" alt="HidroBio" style="height:56px; margin:0 auto; filter:brightness(0) invert(1);" class="fade-in">
+      </div>
+    </div>
+
+    <!-- Scene 1: Opening question -->
+    <div class="scene" data-duration="6000">
+      <div class="scene-bg" style="background-image: url('/photos/aerial-drone.jpg')"></div>
+      <div class="scene-overlay" style="background: rgba(0,0,0,0.7)"></div>
+      <div class="scene-content">
+        <p class="scene-big-text fade-in">
+          What if food could be grown<br>
+          <span class="hl">without compromise?</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Scene 2: The problem -->
+    <div class="scene" data-duration="9000">
+      <div class="scene-overlay" style="background: #000"></div>
+      <div class="scene-content">
+        <p class="scene-subtitle fade-in" style="max-width:700px; font-size:1.1rem; line-height:2">
+          Traditional agriculture uses too much water.<br>
+          Too many chemicals. Too much land.<br>
+          And still, quality is unpredictable.
+        </p>
+        <p class="scene-subtitle fade-in fade-in-d3" style="margin-top:32px; color: var(--green); font-weight:500; font-size:1.1rem;">
+          There is a better way.
+        </p>
+      </div>
+    </div>
+
+    <!-- Scene 3: Hero reveal -->
+    <div class="scene" data-duration="7000">
+      <div class="scene-bg" style="background-image: url('/photos/hero-greenhouse.jpg')"></div>
+      <div class="scene-overlay" style="background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%)"></div>
+      <div class="scene-content">
+        <p class="scene-label fade-in">HidroBio AgroPark</p>
+        <h1 class="scene-title fade-in fade-in-d1">It's Time to<br>Grow <em>Differently</em></h1>
+        <p class="scene-subtitle fade-in fade-in-d2">Dutch precision. Paraguayan heart.<br>Redefining food production for Latin America.</p>
+      </div>
+    </div>
+
+    <!-- Scene 4: Inside the greenhouse -->
+    <div class="scene" data-duration="7000">
+      <div class="scene-bg" style="background-image: url('/photos/interior-tomatoes.jpg')"></div>
+      <div class="scene-overlay" style="background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.65) 100%)"></div>
+      <div class="scene-content" style="align-self: flex-end; padding-bottom: 14vh;">
+        <p class="scene-big-text fade-in" style="text-align:center">
+          Where <span class="hl">nature</span> meets <span class="hl">precision</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Scene 5: Proof in numbers -->
+    <div class="scene" data-duration="7000">
+      <div class="scene-overlay" style="background: var(--dark)"></div>
+      <div class="scene-content">
+        <p class="scene-label fade-in">8 Years of Proof</p>
+        <div class="stats-row fade-in fade-in-d1">
+          <div class="stat">
+            <div class="stat-num">90%</div>
+            <div class="stat-lbl">Less water</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">10x</div>
+            <div class="stat-lbl">Higher yield</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">95%</div>
+            <div class="stat-lbl">Less pesticides</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">50+</div>
+            <div class="stat-lbl">B2B clients</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 6: Coco slab -->
+    <div class="scene" data-duration="6000">
+      <div class="scene-bg" style="background-image: url('/photos/coco-slab.jpg')"></div>
+      <div class="scene-overlay" style="background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%)"></div>
+      <div class="scene-content" style="align-self: flex-end; padding-bottom: 14vh;">
+        <p class="scene-big-text fade-in">
+          No soil. No pesticides.<br>Just <span class="hl">science</span>.
+        </p>
+      </div>
+    </div>
+
+    <!-- Scene 7: Three pillars -->
+    <div class="scene" data-duration="8000">
+      <div class="scene-overlay" style="background: var(--dark)"></div>
+      <div class="scene-content">
+        <p class="scene-label fade-in">What drives us</p>
+        <h2 class="scene-title fade-in fade-in-d1" style="font-size:clamp(1.8rem,4vw,3rem); margin-bottom:40px">
+          Technology as a <em>Tool</em>,<br>Nature as our <em>Guide</em>
+        </h2>
+        <div class="pillars-row">
+          <div class="pill fade-in fade-in-d2">
+            <div class="pill-num">01</div>
+            <div class="pill-name">Climate Intelligence</div>
+            <div class="pill-desc">Hoogendoorn computers. Recipe-based automation. Dutch engineering for the subtropics.</div>
+          </div>
+          <div class="pill fade-in fade-in-d3">
+            <div class="pill-num">02</div>
+            <div class="pill-name">Precision Growing</div>
+            <div class="pill-desc">Hydroponics on coco slab. Every nutrient measured, every drop counted.</div>
+          </div>
+          <div class="pill fade-in fade-in-d4">
+            <div class="pill-num">03</div>
+            <div class="pill-name">AI Operations</div>
+            <div class="pill-desc">Harvest prediction to automated sales. Climate-aware allocation at scale.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 8: Cherry tomatoes -->
+    <div class="scene" data-duration="6000">
+      <div class="scene-bg" style="background-image: url('/photos/interior-cherry.jpg')"></div>
+      <div class="scene-overlay" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.65) 100%)"></div>
+      <div class="scene-content" style="align-self: flex-end; padding-bottom: 14vh;">
+        <p class="scene-big-text fade-in">
+          Grown with <span class="hl">precision</span>,<br>delivered with <span class="hl">purpose</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Scene 9: Timeline montage -->
+    <div class="scene" data-duration="8000">
+      <div class="scene-overlay" style="background: var(--dark)"></div>
+      <div class="scene-content">
+        <p class="scene-label fade-in">The Journey</p>
+        <div style="display:flex; flex-direction:column; gap:24px; margin-top:24px;">
+          <div class="fade-in fade-in-d1" style="display:flex; align-items:baseline; gap:16px; justify-content:center">
+            <span style="font-size:2rem; font-weight:800; color:var(--green); font-variant-numeric:tabular-nums">2018</span>
+            <span style="color:var(--gray); font-size:1rem">First seeds. A 5,000 m&sup2; lettuce greenhouse.</span>
+          </div>
+          <div class="fade-in fade-in-d2" style="display:flex; align-items:baseline; gap:16px; justify-content:center">
+            <span style="font-size:2rem; font-weight:800; color:var(--green); font-variant-numeric:tabular-nums">2023</span>
+            <span style="color:var(--gray); font-size:1rem">Marca Pa&iacute;s. 50+ B2B accounts. Proof that quality sells.</span>
+          </div>
+          <div class="fade-in fade-in-d3" style="display:flex; align-items:baseline; gap:16px; justify-content:center">
+            <span style="font-size:2rem; font-weight:800; color:var(--green); font-variant-numeric:tabular-nums">2025</span>
+            <span style="color:var(--gray); font-size:1rem">1 ha high-tech. Hoogendoorn. Kritifil. Dutch standard.</span>
+          </div>
+          <div class="fade-in fade-in-d4" style="display:flex; align-items:baseline; gap:16px; justify-content:center">
+            <span style="font-size:2rem; font-weight:800; color:var(--green); font-variant-numeric:tabular-nums">2026</span>
+            <span style="color:var(--gray); font-size:1rem">AgroPark Villeta. 100 ha secured. European partnerships.</span>
+          </div>
+          <div class="fade-in fade-in-d5" style="display:flex; align-items:baseline; gap:16px; justify-content:center">
+            <span style="font-size:2rem; font-weight:800; color:var(--green); font-variant-numeric:tabular-nums">2030</span>
+            <span style="color:var(--gray); font-size:1rem">20 ha under Kritifil. Growing 4 ha per year. Export at scale.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 10: Quote -->
+    <div class="scene" data-duration="10000">
+      <div class="scene-overlay" style="background: var(--dark); background: radial-gradient(ellipse at center, rgba(34,197,94,0.08) 0%, var(--dark) 60%)"></div>
+      <div class="scene-content">
+        <div class="quote-mark fade-in">&ldquo;</div>
+        <p class="quote-text fade-in fade-in-d1">We didn't come to Paraguay to build a farm. We came to build a platform that proves food production can be intelligent, sustainable, and profitable &mdash; all at once.</p>
+        <p class="quote-author fade-in fade-in-d2"><strong>Daniel Stanca</strong> &mdash; Co-Founder & CTO</p>
+      </div>
+    </div>
+
+    <!-- Scene 11: AgroPark vision -->
+    <div class="scene" data-duration="7000">
+      <div class="scene-bg" style="background-image: url('/photos/agropark-render.jpg')"></div>
+      <div class="scene-overlay" style="background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 100%)"></div>
+      <div class="scene-content">
+        <p class="scene-label fade-in">AgroPark Villeta</p>
+        <h2 class="scene-title fade-in fade-in-d1" style="font-size:clamp(2rem,5vw,4rem)">100 Hectares.<br>One <em>Vision</em>.</h2>
+        <div class="stats-row fade-in fade-in-d2" style="margin-top:32px">
+          <div class="stat">
+            <div class="stat-num">100 ha</div>
+            <div class="stat-lbl">Land secured</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">290M</div>
+            <div class="stat-lbl">Mercosur market</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">15,000+</div>
+            <div class="stat-lbl">People fed / ha</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 12: Construction -->
+    <div class="scene" data-duration="5000">
+      <div class="scene-bg" style="background-image: url('/photos/construction.jpg')"></div>
+      <div class="scene-overlay" style="background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%)"></div>
+      <div class="scene-content" style="align-self: flex-end; padding-bottom: 14vh;">
+        <p class="scene-big-text fade-in">
+          Being <span class="hl">built</span>. Right <span class="hl">now</span>.
+        </p>
+      </div>
+    </div>
+
+    <!-- Scene 13: Finale -->
+    <div class="scene" data-duration="12000">
+      <div class="scene-overlay" style="background: radial-gradient(ellipse at 50% 60%, rgba(34,197,94,0.1) 0%, #000 50%)"></div>
+      <div class="scene-content">
+        <p class="scene-label fade-in">The Future is Growing</p>
+        <h2 class="scene-title fade-in fade-in-d1">It's Time to<br>Grow <em>Differently</em></h2>
+        <p class="scene-subtitle fade-in fade-in-d2" style="margin-bottom:40px">
+          Join us. As a partner, an investor,<br>
+          or simply someone who believes that better food<br>
+          starts with better thinking.
+        </p>
+        <a href="mailto:daniel@hidrobio.com.py" class="cta fade-in fade-in-d3">Let's Talk</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ---- Custom cursor ----
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    document.addEventListener('mousedown', () => cursor.classList.add('clicking'));
+    document.addEventListener('mouseup', () => cursor.classList.remove('clicking'));
+
+    // ---- Particles ----
+    (function() {
+      const c = document.getElementById('particles');
+      const ctx = c.getContext('2d');
+      let ps = [], w, h;
+      function resize() { w = c.width = innerWidth; h = c.height = innerHeight; }
+      function mkP() {
+        return { x: Math.random()*w, y: Math.random()*h, vx: (Math.random()-0.5)*0.2, vy: -Math.random()*0.3-0.05, s: Math.random()*1.5+0.5, a: Math.random()*0.4+0.1, l: Math.random()*300+100 };
+      }
+      function init() { resize(); ps = []; for (let i = 0; i < 40; i++) ps.push(mkP()); }
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        for (let i = ps.length - 1; i >= 0; i--) {
+          const p = ps[i]; p.x += p.vx; p.y += p.vy; p.l--;
+          if (p.l <= 0 || p.y < -10) { ps[i] = mkP(); ps[i].y = h + 10; continue; }
+          const fa = p.l < 30 ? p.l / 30 : 1;
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.s, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(34,197,94,${p.a * fa})`; ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      addEventListener('resize', resize);
+      init(); draw();
+    })();
+
+    // ---- Cinematic Score Engine (Web Audio API) ----
+    // IIVO-style: warm pads + soft kick pulse + gentle arp + sub bass + convolution reverb
+    const Sound = {
+      ctx: null,
+      master: null,
+      padBus: null,
+      pulseBus: null,
+      arpBus: null,
+      compressor: null,
+      pads: [],
+      bass: null,
+      pulseTimer: null,
+      arpTimer: null,
+      initialized: false,
+
+      // Cinematic arc — builds from silence to full score
+      moods: [
+        // 0: Logo — deep drone, almost felt not heard
+        { freqs: [65.41, 98.00], vol: 0.12, pulse: false, arp: false, bass: true, bpm: 0 },
+        // 1: Opening question — wide ethereal pad, mysterious
+        { freqs: [130.81, 196.00, 261.63], vol: 0.22, pulse: false, arp: false, bass: false, bpm: 0 },
+        // 2: The problem — minor tonality, tension
+        { freqs: [116.54, 146.83, 174.61], vol: 0.28, pulse: false, arp: false, bass: true, bpm: 0 },
+        // 3: Hero reveal — energy arrives, first pulse
+        { freqs: [130.81, 164.81, 196.00, 261.63], vol: 0.4, pulse: true, arp: false, bass: true, bpm: 68 },
+        // 4: Inside greenhouse — flowing, organic
+        { freqs: [146.83, 220.00, 293.66], vol: 0.38, pulse: true, arp: true, bass: false, bpm: 68 },
+        // 5: Stats — confident
+        { freqs: [130.81, 196.00, 261.63, 329.63], vol: 0.45, pulse: true, arp: true, bass: true, bpm: 74 },
+        // 6: Coco slab — clean, minimal
+        { freqs: [164.81, 246.94, 329.63], vol: 0.32, pulse: true, arp: false, bass: false, bpm: 68 },
+        // 7: Three pillars — building momentum
+        { freqs: [130.81, 196.00, 261.63, 392.00], vol: 0.5, pulse: true, arp: true, bass: true, bpm: 78 },
+        // 8: Cherry tomatoes — warm, rich
+        { freqs: [146.83, 220.00, 293.66], vol: 0.42, pulse: true, arp: true, bass: false, bpm: 72 },
+        // 9: Timeline — progressive
+        { freqs: [130.81, 196.00, 261.63, 329.63], vol: 0.5, pulse: true, arp: true, bass: true, bpm: 82 },
+        // 10: Quote — intimate, everything drops
+        { freqs: [146.83, 220.00, 293.66], vol: 0.2, pulse: false, arp: false, bass: false, bpm: 0 },
+        // 11: AgroPark vision — expansive, full
+        { freqs: [130.81, 164.81, 196.00, 261.63, 392.00], vol: 0.55, pulse: true, arp: true, bass: true, bpm: 82 },
+        // 12: Construction — grounded
+        { freqs: [130.81, 196.00, 261.63, 329.63], vol: 0.5, pulse: true, arp: true, bass: true, bpm: 78 },
+        // 13: Finale — emotional climax
+        { freqs: [130.81, 164.81, 196.00, 261.63, 392.00], vol: 0.6, pulse: true, arp: true, bass: true, bpm: 86 },
+      ],
+
+      async init() {
+        if (this.initialized) return;
+        this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+        // Compressor — gentle glue
+        this.compressor = this.ctx.createDynamicsCompressor();
+        this.compressor.threshold.value = -20;
+        this.compressor.ratio.value = 3;
+        this.compressor.attack.value = 0.01;
+        this.compressor.release.value = 0.3;
+
+        // Master gain
+        this.master = this.ctx.createGain();
+        this.master.gain.value = 0;
+
+        // Buses
+        this.padBus = this.ctx.createGain();
+        this.padBus.gain.value = 0.55;
+        this.pulseBus = this.ctx.createGain();
+        this.pulseBus.gain.value = 0.35;
+        this.arpBus = this.ctx.createGain();
+        this.arpBus.gain.value = 0.25;
+
+        // Convolution reverb — 2s tail, smooth decay
+        this.reverb = this.ctx.createConvolver();
+        const len = this.ctx.sampleRate * 2;
+        const impulse = this.ctx.createBuffer(2, len, this.ctx.sampleRate);
+        for (let ch = 0; ch < 2; ch++) {
+          const d = impulse.getChannelData(ch);
+          for (let i = 0; i < len; i++) {
+            // Exponential decay with slight stereo spread
+            d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
+          }
+        }
+        this.reverb.buffer = impulse;
+
+        const reverbSend = this.ctx.createGain();
+        reverbSend.gain.value = 0.25;
+
+        // Routing: buses → compressor → master (dry)
+        this.padBus.connect(this.compressor);
+        this.pulseBus.connect(this.compressor);
+        this.arpBus.connect(this.compressor);
+        this.compressor.connect(this.master);
+
+        // Reverb send (pads + arp → reverb → master)
+        this.padBus.connect(reverbSend);
+        this.arpBus.connect(reverbSend);
+        reverbSend.connect(this.reverb);
+        this.reverb.connect(this.master);
+
+        this.master.connect(this.ctx.destination);
+        this.initialized = true;
+      },
+
+      // ---- PAD: two detuned sines for width ----
+      createPad(freq) {
+        const osc1 = this.ctx.createOscillator();
+        osc1.type = 'sine';
+        osc1.frequency.value = freq;
+        const osc2 = this.ctx.createOscillator();
+        osc2.type = 'sine';
+        osc2.frequency.value = freq * 1.003; // slight detune = width
+
+        const lp = this.ctx.createBiquadFilter();
+        lp.type = 'lowpass';
+        lp.frequency.value = freq * 2.5;
+        lp.Q.value = 0.3;
+
+        const gain = this.ctx.createGain();
+        gain.gain.value = 0;
+
+        osc1.connect(lp);
+        osc2.connect(lp);
+        lp.connect(gain);
+        gain.connect(this.padBus);
+
+        osc1.start();
+        osc2.start();
+        return { osc1, osc2, gain, lp, freq };
+      },
+
+      // ---- SUB BASS: deep sine, very low ----
+      createBass(freq) {
+        const osc = this.ctx.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.value = freq / 2;
+
+        const lp = this.ctx.createBiquadFilter();
+        lp.type = 'lowpass';
+        lp.frequency.value = 100;
+
+        const gain = this.ctx.createGain();
+        gain.gain.value = 0;
+
+        osc.connect(lp);
+        lp.connect(gain);
+        gain.connect(this.padBus);
+        osc.start();
+        return { osc, gain };
+      },
+
+      // ---- SOFT KICK: sine thump, no click ----
+      softKick(time) {
+        const osc = this.ctx.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(80, time);
+        osc.frequency.exponentialRampToValueAtTime(30, time + 0.12);
+
+        const gain = this.ctx.createGain();
+        gain.gain.setValueAtTime(0.35, time);
+        gain.gain.exponentialRampToValueAtTime(0.001, time + 0.4);
+
+        osc.connect(gain);
+        gain.connect(this.pulseBus);
+        osc.start(time);
+        osc.stop(time + 0.45);
+      },
+
+      // ---- SOFT TICK: gentle filtered click ----
+      softTick(time, vol) {
+        const osc = this.ctx.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.value = 1200;
+
+        const lp = this.ctx.createBiquadFilter();
+        lp.type = 'lowpass';
+        lp.frequency.value = 2000;
+        lp.Q.value = 0.1;
+
+        const gain = this.ctx.createGain();
+        gain.gain.setValueAtTime(vol, time);
+        gain.gain.exponentialRampToValueAtTime(0.001, time + 0.04);
+
+        osc.connect(lp);
+        lp.connect(gain);
+        gain.connect(this.pulseBus);
+        osc.start(time);
+        osc.stop(time + 0.06);
+      },
+
+      // ---- ARPEGGIO: gentle sine plucks, quarter notes ----
+      startArp(freqs, bpm) {
+        this.stopArp();
+        const interval = 60 / bpm; // quarter notes (slower, more cinematic)
+        let idx = 0;
+        const play = () => {
+          if (!this.initialized) return;
+          const t = this.ctx.currentTime;
+          const f = freqs[idx % freqs.length] * 2; // octave up
+
+          const osc = this.ctx.createOscillator();
+          osc.type = 'sine';
+          osc.frequency.value = f;
+
+          const lp = this.ctx.createBiquadFilter();
+          lp.type = 'lowpass';
+          lp.frequency.setValueAtTime(f * 3, t);
+          lp.frequency.exponentialRampToValueAtTime(f, t + interval * 0.5);
+          lp.Q.value = 0.3;
+
+          const gain = this.ctx.createGain();
+          gain.gain.setValueAtTime(0.1, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + interval * 0.85);
+
+          osc.connect(lp);
+          lp.connect(gain);
+          gain.connect(this.arpBus);
+          osc.start(t);
+          osc.stop(t + interval);
+
+          idx++;
+          this.arpTimer = setTimeout(play, interval * 1000);
+        };
+        play();
+      },
+
+      stopArp() {
+        if (this.arpTimer) { clearTimeout(this.arpTimer); this.arpTimer = null; }
+      },
+
+      // ---- PULSE: soft kick on 1&3, gentle ticks on offbeats ----
+      startPulse(bpm) {
+        this.stopPulse();
+        const beat = 60 / bpm;
+        const schedule = () => {
+          if (!this.initialized) return;
+          const t = this.ctx.currentTime + 0.05;
+          // Soft 4/4: kick on 1, tick on 2, kick on 3, tick on 4
+          this.softKick(t);
+          this.softTick(t + beat, 0.06);
+          this.softKick(t + beat * 2);
+          this.softTick(t + beat * 3, 0.04);
+
+          this.pulseTimer = setTimeout(schedule, beat * 4 * 1000);
+        };
+        schedule();
+      },
+
+      stopPulse() {
+        if (this.pulseTimer) { clearTimeout(this.pulseTimer); this.pulseTimer = null; }
+      },
+
+      // ---- SCENE TRANSITION ----
+      transitionTo(sceneIndex) {
+        if (!this.initialized || sceneIndex < 0 || sceneIndex >= this.moods.length) return;
+
+        const mood = this.moods[sceneIndex];
+        const t = this.ctx.currentTime;
+        const fade = 2.5;
+
+        // Master volume
+        const targetVol = (typeof muted !== 'undefined' && muted) ? 0 : mood.vol * 0.35;
+        this.master.gain.setTargetAtTime(targetVol, t, fade * 0.4);
+
+        // Fade out old pads
+        this.pads.forEach(p => {
+          p.gain.gain.setTargetAtTime(0, t, fade * 0.3);
+          const old = p;
+          setTimeout(() => { try { old.osc1.stop(); old.osc2.stop(); } catch {} }, fade * 1800);
+        });
+
+        // Fade out old bass
+        if (this.bass) {
+          this.bass.gain.gain.setTargetAtTime(0, t, fade * 0.3);
+          const old = this.bass;
+          setTimeout(() => { try { old.osc.stop(); } catch {} }, fade * 1800);
+          this.bass = null;
+        }
+
+        // New pads — warm sine, slow swell
+        this.pads = mood.freqs.map(f => {
+          const v = this.createPad(f);
+          v.gain.gain.setTargetAtTime(0.04, t + 0.4, fade * 0.6);
+          v.lp.frequency.setTargetAtTime(f * (1.5 + mood.vol * 2.5), t + 0.5, fade);
+          return v;
+        });
+
+        // Bass
+        if (mood.bass && mood.freqs.length > 0) {
+          this.bass = this.createBass(mood.freqs[0]);
+          this.bass.gain.gain.setTargetAtTime(0.12, t + 0.5, fade);
+        }
+
+        // Pulse (soft kick pattern)
+        if (mood.pulse && mood.bpm > 0) {
+          this.startPulse(mood.bpm);
+        } else {
+          this.stopPulse();
+        }
+
+        // Arpeggio
+        if (mood.arp && mood.bpm > 0) {
+          this.startArp(mood.freqs, mood.bpm);
+        } else {
+          this.stopArp();
+        }
+
+        // Slow filter drift for organic movement
+        this.pads.forEach((p, i) => {
+          const base = p.freq * (1.5 + mood.vol * 2.5);
+          const drift = () => {
+            if (!p.gain.gain.value) return;
+            const target = base + (Math.random() - 0.5) * base * 0.15;
+            p.lp.frequency.setTargetAtTime(target, this.ctx.currentTime, 5 + Math.random() * 4);
+            setTimeout(drift, 6000 + Math.random() * 4000);
+          };
+          setTimeout(drift, 3000 + i * 1200);
+        });
+      },
+
+      fadeOut() {
+        if (!this.initialized) return;
+        this.master.gain.setTargetAtTime(0, this.ctx.currentTime, 3);
+        this.stopPulse();
+        this.stopArp();
+      },
+
+      resume() {
+        if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume();
+      }
+    };
+
+    // ---- Film Engine ----
+    const scenes = Array.from(document.querySelectorAll('.scene'));
+    const totalScenes = scenes.length;
+    let current = -1;
+    let timer = null;
+    let paused = false;
+    let started = false;
+
+    // Build nav dots
+    const dotsContainer = document.getElementById('navDots');
+    scenes.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'nav-dot';
+      dot.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(dot);
+    });
+    const dots = Array.from(dotsContainer.children);
+
+    function updateProgress() {
+      const pct = ((current + 1) / totalScenes) * 100;
+      document.getElementById('progressBar').style.width = pct + '%';
+      document.getElementById('sceneCounter').textContent =
+        String(current + 1).padStart(2, '0') + ' / ' + String(totalScenes).padStart(2, '0');
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    function goTo(index) {
+      if (index < 0 || index >= totalScenes) return;
+      clearTimeout(timer);
+
+      // Deactivate current
+      if (current >= 0) scenes[current].classList.remove('active');
+
+      current = index;
+      scenes[current].classList.add('active');
+      updateProgress();
+
+      // Soundtrack: transition to scene mood
+      Sound.transitionTo(current);
+
+      if (!paused) scheduleNext();
+    }
+
+    function next() {
+      if (current < totalScenes - 1) {
+        goTo(current + 1);
+      }
+      // Stay on last scene
+    }
+
+    function prev() {
+      if (current > 0) goTo(current - 1);
+    }
+
+    function scheduleNext() {
+      clearTimeout(timer);
+      const duration = parseInt(scenes[current].dataset.duration) || 6000;
+      if (current < totalScenes - 1) {
+        timer = setTimeout(next, duration);
+      }
+    }
+
+    function togglePause() {
+      paused = !paused;
+      const indicator = document.getElementById('pauseIndicator');
+      if (paused) {
+        clearTimeout(timer);
+        indicator.classList.add('show');
+        setTimeout(() => indicator.classList.remove('show'), 800);
+      } else {
+        indicator.classList.remove('show');
+        scheduleNext();
+      }
+    }
+
+    // ---- Start ----
+    document.getElementById('playBtn').addEventListener('click', async () => {
+      await Sound.init();
+      Sound.resume();
+      document.getElementById('playScreen').classList.add('hidden');
+      started = true;
+      goTo(0);
+    });
+
+    // Keyboard controls
+    document.addEventListener('keydown', e => {
+      if (!started) {
+        if (e.code === 'Space' || e.code === 'Enter') {
+          document.getElementById('playBtn').click();
+        }
+        return;
+      }
+      switch (e.code) {
+        case 'Space': e.preventDefault(); togglePause(); break;
+        case 'ArrowRight': case 'ArrowDown': e.preventDefault(); next(); break;
+        case 'ArrowLeft': case 'ArrowUp': e.preventDefault(); prev(); break;
+      }
+    });
+
+    // Sound mute toggle
+    let muted = false;
+    function toggleMute() {
+      muted = !muted;
+      const el = document.getElementById('soundToggle');
+      const label = document.getElementById('soundLabel');
+      if (muted) {
+        el.classList.add('muted');
+        label.textContent = 'Sound off';
+        if (Sound.master) Sound.master.gain.setTargetAtTime(0, Sound.ctx.currentTime, 0.3);
+      } else {
+        el.classList.remove('muted');
+        label.textContent = 'Sound on';
+        if (Sound.initialized && current >= 0) {
+          const mood = Sound.moods[current];
+          Sound.master.gain.setTargetAtTime(mood.vol * 0.3, Sound.ctx.currentTime, 0.5);
+        }
+      }
+    }
+
+    // Click to advance (except on links and sound toggle)
+    document.getElementById('film').addEventListener('click', e => {
+      if (!started) return;
+      if (e.target.closest('a') || e.target.closest('.sound-toggle')) return;
+      next();
+    });
+  </script>
+
+</body>
+</html>
