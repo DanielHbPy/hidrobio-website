@@ -47,8 +47,13 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 88px;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+    }
+
+    section, .about, .products, .technology, .academy, .press, .vision, .locations, .contact {
+      scroll-margin-top: 88px;
     }
 
     body {
@@ -136,8 +141,12 @@
     }
 
     .nav-logo {
+      height: 44px;
+      transition: opacity 0.3s ease, height 0.3s ease;
+    }
+
+    .nav.scrolled .nav-logo {
       height: 36px;
-      transition: opacity 0.3s ease;
     }
 
     .nav-logo.colored { display: none; }
@@ -147,7 +156,7 @@
 
     .nav-links {
       display: flex;
-      gap: 32px;
+      gap: 24px;
       list-style: none;
       align-items: center;
     }
@@ -171,6 +180,12 @@
     .nav.scrolled .nav-links a:hover {
       color: var(--green-primary);
     }
+
+    .lang-toggle { display: flex; gap: 2px; align-items: center; margin-left: 8px; }
+    .lang-btn { padding: 4px 10px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.3); font-size: 11px; font-weight: 600; cursor: pointer; background: transparent; color: rgba(255,255,255,0.7); transition: all 0.2s; }
+    .lang-btn.active { background: var(--green-primary); color: #fff; border-color: var(--green-primary); }
+    .nav.scrolled .lang-btn { border-color: var(--gray-300); color: var(--gray-500); }
+    .nav.scrolled .lang-btn.active { background: var(--green-primary); color: #fff; border-color: var(--green-primary); }
 
     .nav-cta {
       background: var(--green-primary);
@@ -452,7 +467,7 @@
     }
 
     .credential-item img {
-      height: 260px;
+      height: 180px;
       width: auto;
       object-fit: contain;
       border-radius: 8px;
@@ -464,9 +479,12 @@
     }
 
     .credential-item span {
-      font-size: 0.75rem;
-      color: var(--gray-500);
-      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--gray-700);
+      font-weight: 500;
+      text-align: center;
+      max-width: 200px;
+      line-height: 1.4;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
@@ -496,7 +514,7 @@
 
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 24px;
     }
 
@@ -911,10 +929,10 @@
       margin-bottom: 48px;
       position: relative;
     }
-    .vision-banner img {
+    .vision-banner img,
+    .vision-banner video {
       width: 100%;
-      height: 360px;
-      object-fit: cover;
+      height: auto;
       display: block;
     }
     .vision-banner-overlay {
@@ -930,6 +948,22 @@
       font-size: 1.1rem;
       font-weight: 700;
       margin-bottom: 4px;
+    }
+    .vision-banner-btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 12px 32px;
+      background: var(--green-accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .vision-banner-btn:hover {
+      background: #1db954;
+      transform: translateY(-2px);
     }
     .vision-banner-overlay p {
       font-size: 0.85rem;
@@ -967,6 +1001,78 @@
     @media (max-width: 768px) {
       .vision-cards { grid-template-columns: 1fr; }
       .vision-banner img { height: 240px; }
+    }
+
+    /* =============================================
+       AgroPark Calling (cinematic video section)
+       ============================================= */
+    .agropark-calling {
+      position: relative;
+      height: 70vh;
+      min-height: 480px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .agropark-calling-video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .agropark-calling-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.65) 100%);
+    }
+    .agropark-calling-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #fff;
+      max-width: 700px;
+      padding: 0 24px;
+    }
+    .agropark-calling-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green-accent);
+      margin-bottom: 16px;
+    }
+    .agropark-calling-title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .agropark-calling-title em {
+      font-style: italic;
+      color: var(--green-accent);
+    }
+    .agropark-calling-text {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .agropark-calling-btn {
+      display: inline-block;
+      padding: 14px 36px;
+      background: var(--green-accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .agropark-calling-btn:hover {
+      background: var(--green-primary);
+      transform: translateY(-2px);
     }
 
     /* =============================================
@@ -1164,8 +1270,8 @@
     }
 
     .footer-logo {
-      height: 28px;
-      opacity: 0.6;
+      height: 32px;
+      opacity: 0.8;
     }
 
     .footer-social {
@@ -1203,18 +1309,19 @@
         <img src="/assets/logo.svg" alt="HidroBio" class="nav-logo colored">
       </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#nosotros">Nosotros</a></li>
-        <li><a href="#productos">Productos</a></li>
-        <li><a href="#tecnologia">Tecnología</a></li>
-        <li><a href="#academia">Academia</a></li>
-        <li><a href="#prensa">Prensa</a></li>
-        <li><a href="#vision">Visión</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-        <li><a href="https://wa.me/595986610012" target="_blank" rel="noopener" class="nav-cta">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Hacé tu Pedido
-        </a></li>
+        <li><a href="#nosotros" data-es="Nosotros" data-en="About">Nosotros</a></li>
+        <li><a href="#productos" data-es="Productos" data-en="Products">Productos</a></li>
+        <li><a href="#tecnologia" data-es="Tecnolog&iacute;a" data-en="Technology">Tecnología</a></li>
+        <li><a href="#academia" data-es="Academia" data-en="Academy">Academia</a></li>
+        <li><a href="#prensa" data-es="Prensa" data-en="Press">Prensa</a></li>
+        <li><a href="#vision" data-es="Visi&oacute;n" data-en="Vision">Visión</a></li>
+        <li><a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a></li>
       </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a href="https://wa.me/595986610012" target="_blank" rel="noopener" class="nav-cta" data-es="Hacé tu Pedido" data-en="Order Now">Hacé tu Pedido</a>
       <button class="nav-toggle" id="navToggle" aria-label="Menú">
         <span></span><span></span><span></span>
       </button>
@@ -1226,16 +1333,15 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <img src="/assets/logo-white.svg" alt="HidroBio" class="hero-logo">
-      <p class="hero-tagline">Horticultura de Precisión</p>
-      <h1 class="hero-title">Cultivamos el futuro de la alimentación en Paraguay</h1>
-      <p class="hero-sub">Productos hidropónicos frescos, sin suelo, sin pesticidas. 2 nuevas hectáreas en construcción inaugurando el HidroBio AgroPark.</p>
+      <p class="hero-tagline" data-es="HidroBio &mdash; Horticultura de Precisi&oacute;n" data-en="HidroBio &mdash; Precision Horticulture">HidroBio &mdash; Horticultura de Precisión</p>
+      <h1 class="hero-title" data-es="Cultivamos el futuro de la alimentaci&oacute;n en Paraguay" data-en="Growing the future of food in Paraguay">Cultivamos el futuro de la alimentación en Paraguay</h1>
+      <p class="hero-sub" data-es="Productos hidrop&oacute;nicos frescos, sin suelo, sin pesticidas. AgroPark Fase 1: 20 hect&aacute;reas de agricultura protegida en marcha." data-en="Fresh hydroponic produce, no soil, no pesticides. AgroPark Phase 1: 20 hectares of protected agriculture underway.">Productos hidropónicos frescos, sin suelo, sin pesticidas. AgroPark Fase 1: 20 hectáreas de agricultura protegida en marcha.</p>
       <div class="hero-buttons">
         <a href="https://wa.me/595986610012" target="_blank" rel="noopener" class="btn-primary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Hacé tu Pedido
+          <span data-es="Hac&eacute; tu Pedido" data-en="Place your Order">Hacé tu Pedido</span>
         </a>
-        <a href="#nosotros" class="btn-outline">Conocenos</a>
+        <a href="#nosotros" class="btn-outline" data-es="Conocenos" data-en="About Us">Conocenos</a>
       </div>
     </div>
     <div class="scroll-indicator">
@@ -1248,10 +1354,10 @@
     <div class="container">
       <div class="about-grid fade-up">
         <div class="about-text">
-          <p class="section-label">Nuestra Historia</p>
-          <h2 class="section-title">Desde 2018, redefiniendo la agricultura en Paraguay</h2>
-          <p>En HidroBio creemos que el futuro de la alimentación es local, ecológico y sostenible. Lo que comenzó como un pequeño invernadero de lechugas hidropónicas se convirtió en el AgroPark más ambicioso de la región.</p>
-          <p>Hoy operamos 1.5 hectáreas de invernaderos de alta tecnología con sistemas de climatización Priva, con 2 hectáreas más en construcción inaugurando el AgroPark. Producimos tomates, locotes, lechugas y hierbas frescas los 365 días del año, sin pesticidas y con 90% menos de agua.</p>
+          <p class="section-label" data-es="Nuestra Historia" data-en="Our Story">Nuestra Historia</p>
+          <h2 class="section-title" data-es="Desde 2018, redefiniendo la agricultura en Paraguay" data-en="Since 2018, redefining agriculture in Paraguay">Desde 2018, redefiniendo la agricultura en Paraguay</h2>
+          <p data-es="En HidroBio creemos que el futuro de la alimentaci&oacute;n es local, ecol&oacute;gico y sostenible. Lo que comenz&oacute; como un peque&ntilde;o invernadero de lechugas hidrop&oacute;nicas se convirti&oacute; en el AgroPark m&aacute;s ambicioso de la regi&oacute;n." data-en="At HidroBio we believe the future of food is local, ecological and sustainable. What started as a small hydroponic lettuce greenhouse became the most ambitious AgroPark in the region.">En HidroBio creemos que el futuro de la alimentación es local, ecológico y sostenible. Lo que comenzó como un pequeño invernadero de lechugas hidropónicas se convirtió en el AgroPark más ambicioso de la región.</p>
+          <p data-es="Hoy operamos 1.5 hect&aacute;reas de invernaderos de alta tecnolog&iacute;a con sistemas de automatizaci&oacute;n holandesa de invernaderos, con el AgroPark Fase 1 de 20 hect&aacute;reas en marcha. Producimos tomates, locotes, lechugas y hierbas frescas los 365 d&iacute;as del a&ntilde;o, sin pesticidas y con 90% menos de agua." data-en="Today we operate 1.5 hectares of high-tech greenhouses with Dutch greenhouse automation systems, with AgroPark Phase 1 of 20 hectares underway. We produce tomatoes, peppers, lettuce and fresh herbs 365 days a year, without pesticides and with 90% less water.">Hoy operamos 1.5 hectáreas de invernaderos de alta tecnología con sistemas de automatización holandesa de invernaderos, con el AgroPark Fase 1 de 20 hectáreas en marcha. Producimos tomates, locotes, lechugas y hierbas frescas los 365 días del año, sin pesticidas y con 90% menos de agua.</p>
         </div>
         <div class="about-image">
           <img src="/photos/aerial-drone.jpg" alt="Vista aérea del AgroPark HidroBio en Nueva Italia, Paraguay">
@@ -1261,38 +1367,38 @@
       <div class="stats-row fade-up">
         <div class="stat-item">
           <div class="stat-number">8+</div>
-          <div class="stat-label">Años de experiencia</div>
+          <div class="stat-label" data-es="A&ntilde;os de experiencia" data-en="Years of experience">Años de experiencia</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number">3.5 ha</div>
-          <div class="stat-label">1.5 activos + 2 en construcción</div>
+          <div class="stat-number">1.5 ha</div>
+          <div class="stat-label" data-es="En operaci&oacute;n" data-en="In operation">En operación</div>
         </div>
         <div class="stat-item">
           <div class="stat-number">50+</div>
-          <div class="stat-label">Clientes B2B</div>
+          <div class="stat-label" data-es="Clientes B2B" data-en="B2B Customers">Clientes B2B</div>
         </div>
         <div class="stat-item">
           <div class="stat-number">16K+</div>
-          <div class="stat-label">Comunidad digital</div>
+          <div class="stat-label" data-es="Comunidad digital" data-en="Digital community">Comunidad digital</div>
         </div>
       </div>
 
       <div class="credentials fade-up">
         <div class="credential-item">
           <img src="/photos/marca-pais-certificate-digital.jpg" alt="Marca País Paraguay">
-          <span>Marca País</span>
-        </div>
-        <div class="credential-item">
-          <img src="/photos/sello-verde-ceremony.jpg" alt="Sello Verde Paraguay">
-          <span>Sello Verde</span>
+          <span data-es="Marca Pa&iacute;s Paraguay &mdash; Certificaci&oacute;n nacional de calidad y trazabilidad (REDIEX, 2025)" data-en="Marca Pa&iacute;s Paraguay &mdash; National quality and traceability certification (REDIEX, 2025)">Marca Pa&iacute;s Paraguay &mdash; Certificaci&oacute;n nacional de calidad y trazabilidad (REDIEX, 2025)</span>
         </div>
         <div class="credential-item">
           <img src="/photos/premio-ahk-ceremony.jpeg" alt="Premio AHK 2025">
-          <span>AHK #1</span>
+          <span data-es="C&aacute;mara Alemana de Comercio &mdash; 1er Puesto, Empresa M&aacute;s Sostenible del Paraguay (2025)" data-en="German Chamber of Commerce &mdash; 1st Place, Most Sustainable Company in Paraguay (2025)">C&aacute;mara Alemana de Comercio &mdash; 1er Puesto, Empresa M&aacute;s Sostenible del Paraguay (2025)</span>
         </div>
         <div class="credential-item">
-          <img src="/photos/sello-verde-eu-banners.jpg" alt="AL-Invest Verde">
-          <span>AL-Invest Verde</span>
+          <img src="/photos/sello-verde-ceremony.jpg" alt="Sello Verde Paraguay">
+          <span data-es="Sello Verde &mdash; Certificaci&oacute;n ambiental de la Uni&oacute;n Industrial Paraguaya (2025)" data-en="Sello Verde &mdash; Environmental certification by the Paraguayan Industrial Union (2025)">Sello Verde &mdash; Certificaci&oacute;n ambiental de la Uni&oacute;n Industrial Paraguaya (2025)</span>
+        </div>
+        <div class="credential-item">
+          <img src="/photos/convenio-usc.jpg" alt="Universidad San Carlos">
+          <span data-es="Universidad San Carlos &mdash; Convenio de investigaci&oacute;n y formaci&oacute;n agr&iacute;cola" data-en="Universidad San Carlos &mdash; Research and agricultural training agreement">Universidad San Carlos &mdash; Convenio de investigaci&oacute;n y formaci&oacute;n agr&iacute;cola</span>
         </div>
       </div>
     </div>
@@ -1302,17 +1408,17 @@
   <section class="products" id="productos">
     <div class="container">
       <div class="products-header fade-up">
-        <p class="section-label">Nuestros Productos</p>
-        <h2 class="section-title">Sin suelo, sin pesticidas, con sabor</h2>
-        <p class="section-subtitle">Cultivados bajo invernadero con tecnología de punta, nuestros productos llegan frescos a tu mesa o negocio todos los días del año.</p>
+        <p class="section-label" data-es="Nuestros Productos" data-en="Our Products">Nuestros Productos</p>
+        <h2 class="section-title" data-es="Sin suelo, sin pesticidas, con sabor" data-en="No soil, no pesticides, full flavor">Sin suelo, sin pesticidas, con sabor</h2>
+        <p class="section-subtitle" data-es="Cultivados bajo invernadero con tecnolog&iacute;a de punta, nuestros productos llegan frescos a tu mesa o negocio todos los d&iacute;as del a&ntilde;o." data-en="Grown in greenhouses with cutting-edge technology, our products arrive fresh to your table or business every day of the year.">Cultivados bajo invernadero con tecnología de punta, nuestros productos llegan frescos a tu mesa o negocio todos los días del año.</p>
       </div>
 
       <div class="product-grid">
         <div class="product-card fade-up">
           <img src="/photos/lechugas-verdes-moradas.jpg" alt="Lechugas hidropónicas HidroBio" class="product-card-img">
           <div class="product-card-body">
-            <h3 class="product-card-title">Lechugas</h3>
-            <p class="product-card-desc">Frescura y crocancia garantizada. Cultivadas en NFT hidropónico, listas para consumir.</p>
+            <h3 class="product-card-title" data-es="Lechugas" data-en="Lettuce">Lechugas</h3>
+            <p class="product-card-desc" data-es="Frescura y crocancia garantizada. Cultivadas en NFT hidrop&oacute;nico, listas para consumir." data-en="Guaranteed freshness and crunch. Grown in hydroponic NFT, ready to eat.">Frescura y crocancia garantizada. Cultivadas en NFT hidropónico, listas para consumir.</p>
             <div class="product-card-varieties">
               <span class="variety-tag">Pirati</span>
               <span class="variety-tag">Mantecosa</span>
@@ -1326,8 +1432,8 @@
         <div class="product-card fade-up">
           <img src="/photos/interior-cherry.jpg" alt="Tomates hidropónicos HidroBio" class="product-card-img">
           <div class="product-card-body">
-            <h3 class="product-card-title">Tomates</h3>
-            <p class="product-card-desc">Sabor intenso, madurados en planta. Cultivados en sustrato de fibra de coco con nutrición de precisión.</p>
+            <h3 class="product-card-title" data-es="Tomates" data-en="Tomatoes">Tomates</h3>
+            <p class="product-card-desc" data-es="Sabor intenso, madurados en planta. Cultivados en sustrato de fibra de coco con nutrici&oacute;n de precisi&oacute;n." data-en="Intense flavor, vine-ripened. Grown in coconut coir substrate with precision nutrition.">Sabor intenso, madurados en planta. Cultivados en sustrato de fibra de coco con nutrición de precisión.</p>
             <div class="product-card-varieties">
               <span class="variety-tag">Lisa</span>
               <span class="variety-tag">Perita</span>
@@ -1339,8 +1445,8 @@
         <div class="product-card fade-up">
           <img src="/photos/sweet-bells.jpg" alt="Sweet Bells HidroBio" class="product-card-img">
           <div class="product-card-body">
-            <h3 class="product-card-title">Morrones</h3>
-            <p class="product-card-desc">Color vibrante, textura firme. Producción continua todo el año, sin depender del clima.</p>
+            <h3 class="product-card-title" data-es="Morrones" data-en="Bell Peppers">Morrones</h3>
+            <p class="product-card-desc" data-es="Color vibrante, textura firme. Producci&oacute;n continua todo el a&ntilde;o, sin depender del clima." data-en="Vibrant color, firm texture. Continuous production year-round, independent of weather.">Color vibrante, textura firme. Producción continua todo el año, sin depender del clima.</p>
             <div class="product-card-varieties">
               <span class="variety-tag">Rojo</span>
               <span class="variety-tag">Verde</span>
@@ -1352,8 +1458,8 @@
         <div class="product-card fade-up">
           <img src="/photos/albahaca.jpg" alt="Albahaca HidroBio" class="product-card-img">
           <div class="product-card-body">
-            <h3 class="product-card-title">Hierbas Aromáticas</h3>
-            <p class="product-card-desc">Aromáticas frescas para tu cocina. Cosechadas el mismo día de entrega.</p>
+            <h3 class="product-card-title" data-es="Hierbas Arom&aacute;ticas" data-en="Aromatic Herbs">Hierbas Aromáticas</h3>
+            <p class="product-card-desc" data-es="Arom&aacute;ticas frescas para tu cocina. Cosechadas el mismo d&iacute;a de entrega." data-en="Fresh aromatics for your kitchen. Harvested the same day of delivery.">Aromáticas frescas para tu cocina. Cosechadas el mismo día de entrega.</p>
             <div class="product-card-varieties">
               <span class="variety-tag">Albahaca</span>
               <span class="variety-tag">Perejil</span>
@@ -1362,23 +1468,13 @@
           </div>
         </div>
 
-        <div class="product-card fade-up">
-          <img src="/photos/lettuce-varieties.jpg" alt="Hojas verdes HidroBio" class="product-card-img">
-          <div class="product-card-body">
-            <h3 class="product-card-title">Hojas Verdes</h3>
-            <p class="product-card-desc">Frescas y nutritivas, cultivadas bajo invernadero con tecnología hidropónica.</p>
-            <div class="product-card-varieties">
-              <span class="variety-tag">Rúcula</span>
-              <span class="variety-tag">Acelga</span>
-            </div>
-          </div>
-        </div>
+
       </div>
 
       <div class="products-cta fade-up">
         <a href="https://wa.me/595986610012" target="_blank" rel="noopener" class="btn-whatsapp">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Pedí por WhatsApp
+          <span data-es="Ped&iacute; por WhatsApp" data-en="Order via WhatsApp">Pedí por WhatsApp</span>
         </a>
       </div>
     </div>
@@ -1389,50 +1485,50 @@
     <div class="tech-bg"></div>
     <div class="container">
       <div class="tech-header fade-up">
-        <p class="section-label">Nuestra Tecnología</p>
-        <h2 class="section-title">Invernaderos de clase mundial en el corazón de Paraguay</h2>
-        <p class="section-subtitle">Tecnología holandesa adaptada al trópico sudamericano. Automatización completa para producción continua los 365 días del año.</p>
+        <p class="section-label" data-es="Nuestra Tecnolog&iacute;a" data-en="Our Technology">Nuestra Tecnología</p>
+        <h2 class="section-title" data-es="Invernaderos de clase mundial en el coraz&oacute;n de Paraguay" data-en="World-class greenhouses in the heart of Paraguay">Invernaderos de clase mundial en el corazón de Paraguay</h2>
+        <p class="section-subtitle" data-es="Tecnolog&iacute;a holandesa adaptada al tr&oacute;pico sudamericano. Automatizaci&oacute;n completa para producci&oacute;n continua los 365 d&iacute;as del a&ntilde;o." data-en="Dutch technology adapted for the South American tropics. Full automation for continuous production 365 days a year.">Tecnología holandesa adaptada al trópico sudamericano. Automatización completa para producción continua los 365 días del año.</p>
       </div>
 
       <div class="tech-grid">
         <div class="tech-card fade-up">
           <span class="tech-card-icon">🖥️</span>
-          <h3 class="tech-card-title">Computadora Climática Priva</h3>
-          <p class="tech-card-desc">Control automatizado de temperatura, humedad y ventilación con recetas de cultivo personalizadas.</p>
+          <h3 class="tech-card-title" data-es="Climatizaci&oacute;n Holandesa" data-en="Dutch Climate Control">Climatización Holandesa</h3>
+          <p class="tech-card-desc" data-es="Automatizaci&oacute;n holandesa de invernaderos. Clima, agua, energ&iacute;a y datos integrados por l&iacute;deres mundiales en agricultura protegida." data-en="Dutch greenhouse automation. Climate, water, energy and data integrated by world leaders in protected agriculture.">Automatización holandesa de invernaderos. Clima, agua, energía y datos integrados por líderes mundiales en agricultura protegida.</p>
         </div>
         <div class="tech-card fade-up">
           <span class="tech-card-icon">🥥</span>
-          <h3 class="tech-card-title">Sustrato de Fibra de Coco</h3>
-          <p class="tech-card-desc">Importado de Sri Lanka. Medio de cultivo premium que reemplaza el suelo con mayor control y rendimiento.</p>
+          <h3 class="tech-card-title" data-es="Sustrato de Fibra de Coco" data-en="Coconut Coir Substrate">Sustrato de Fibra de Coco</h3>
+          <p class="tech-card-desc" data-es="Importado de Sri Lanka. Medio de cultivo premium que reemplaza el suelo con mayor control y rendimiento." data-en="Imported from Sri Lanka. Premium growing medium that replaces soil with greater control and yield.">Importado de Sri Lanka. Medio de cultivo premium que reemplaza el suelo con mayor control y rendimiento.</p>
         </div>
         <div class="tech-card fade-up">
           <span class="tech-card-icon">💨</span>
-          <h3 class="tech-card-title">Ventilación Automática</h3>
-          <p class="tech-card-desc">Ventanas de techo motorizadas y ventiladores eléctricos responden en tiempo real a las condiciones climáticas.</p>
+          <h3 class="tech-card-title" data-es="Ventilaci&oacute;n Autom&aacute;tica" data-en="Automatic Ventilation">Ventilación Automática</h3>
+          <p class="tech-card-desc" data-es="Ventanas de techo motorizadas y ventiladores el&eacute;ctricos responden en tiempo real a las condiciones clim&aacute;ticas." data-en="Motorized roof windows and electric fans respond in real time to weather conditions.">Ventanas de techo motorizadas y ventiladores eléctricos responden en tiempo real a las condiciones climáticas.</p>
         </div>
         <div class="tech-card fade-up">
           <span class="tech-card-icon">💧</span>
-          <h3 class="tech-card-title">Riego de Precisión</h3>
-          <p class="tech-card-desc">Sistema de fertirriego automatizado que dosifica agua y nutrientes exactos para cada cultivo.</p>
+          <h3 class="tech-card-title" data-es="Riego de Precisi&oacute;n" data-en="Precision Irrigation">Riego de Precisión</h3>
+          <p class="tech-card-desc" data-es="Sistema de fertirriego automatizado que dosifica agua y nutrientes exactos para cada cultivo." data-en="Automated fertigation system that delivers precise water and nutrients for each crop.">Sistema de fertirriego automatizado que dosifica agua y nutrientes exactos para cada cultivo.</p>
         </div>
       </div>
 
       <div class="impact-row fade-up">
         <div class="impact-item">
           <div class="impact-number">90%</div>
-          <div class="impact-label">Menos agua</div>
+          <div class="impact-label" data-es="Menos agua" data-en="Less water">Menos agua</div>
         </div>
         <div class="impact-item">
           <div class="impact-number">10x</div>
-          <div class="impact-label">Más productividad</div>
+          <div class="impact-label" data-es="M&aacute;s productividad" data-en="More productivity">Más productividad</div>
         </div>
         <div class="impact-item">
           <div class="impact-number">95%</div>
-          <div class="impact-label">Menos pesticidas</div>
+          <div class="impact-label" data-es="Menos pesticidas" data-en="Less pesticides">Menos pesticidas</div>
         </div>
         <div class="impact-item">
           <div class="impact-number">365</div>
-          <div class="impact-label">Días al año</div>
+          <div class="impact-label" data-es="D&iacute;as al a&ntilde;o" data-en="Days a year">Días al año</div>
         </div>
       </div>
     </div>
@@ -1446,30 +1542,30 @@
           <img src="/photos/young-plants-greenhouse.jpg" alt="HidroBio La Academia — formación en hidroponía">
         </div>
         <div class="academy-text fade-up">
-          <p class="section-label">HidroBio La Academia</p>
-          <h2 class="section-title">Formamos a los productores del futuro</h2>
-          <p>Lanzada en noviembre de 2024, La Academia es nuestra plataforma de formación en agricultura hidropónica sostenible. Ofrecemos cursos presenciales y en línea para productores que quieren dar el salto a la horticultura de precisión.</p>
-          <p>Nuestros cursos combinan teoría con práctica directa en nuestros invernaderos, cubriendo desde el manejo climático hasta la prevención de enfermedades como Pythium en verano.</p>
+          <p class="section-label" data-es="HidroBio La Academia" data-en="HidroBio The Academy">HidroBio La Academia</p>
+          <h2 class="section-title" data-es="Formamos a los productores del futuro" data-en="Training the growers of the future">Formamos a los productores del futuro</h2>
+          <p data-es="Lanzada en noviembre de 2024, La Academia es nuestra plataforma de formaci&oacute;n en agricultura hidrop&oacute;nica sostenible. Ofrecemos cursos presenciales y en l&iacute;nea para productores que quieren dar el salto a la horticultura de precisi&oacute;n." data-en="Launched in November 2024, The Academy is our training platform for sustainable hydroponic agriculture. We offer in-person and online courses for growers who want to make the leap to precision horticulture.">Lanzada en noviembre de 2024, La Academia es nuestra plataforma de formación en agricultura hidropónica sostenible. Ofrecemos cursos presenciales y en línea para productores que quieren dar el salto a la horticultura de precisión.</p>
+          <p data-es="Nuestros cursos combinan teor&iacute;a con pr&aacute;ctica directa en nuestros invernaderos, cubriendo desde el manejo clim&aacute;tico hasta la prevenci&oacute;n de enfermedades como Pythium en verano." data-en="Our courses combine theory with hands-on practice in our greenhouses, covering everything from climate management to disease prevention such as Pythium in summer.">Nuestros cursos combinan teoría con práctica directa en nuestros invernaderos, cubriendo desde el manejo climático hasta la prevención de enfermedades como Pythium en verano.</p>
 
           <div class="instructor-row">
             <div class="instructor">
               <img src="/photos/maxi.jpg" alt="Maximiliano Samaniego">
               <div>
                 <div class="instructor-name">Maximiliano Samaniego</div>
-                <div class="instructor-role">CEO &amp; Ing. Agrónomo</div>
+                <div class="instructor-role" data-es="CEO &amp; Ing. Agr&oacute;nomo" data-en="CEO &amp; Agricultural Engineer">CEO &amp; Ing. Agrónomo</div>
               </div>
             </div>
             <div class="instructor">
               <img src="/photos/wilson.jpg" alt="Wilson Sánchez">
               <div>
                 <div class="instructor-name">Wilson Sánchez</div>
-                <div class="instructor-role">Director Técnico</div>
+                <div class="instructor-role" data-es="Director T&eacute;cnico" data-en="Technical Director">Director Técnico</div>
               </div>
             </div>
           </div>
 
           <div class="academy-cta">
-            <a href="mailto:academia@hidrobio.com.py" class="btn-primary">Inscribite</a>
+            <a href="mailto:academia@hidrobio.com.py" class="btn-primary" data-es="Inscribite" data-en="Enroll">Inscribite</a>
             <a href="tel:+595971315428" class="btn-outline" style="color: var(--gray-700); border-color: var(--gray-300);">+595 971 315 428</a>
           </div>
         </div>
@@ -1481,26 +1577,26 @@
   <section class="press" id="prensa">
     <div class="container">
       <div class="press-header fade-up">
-        <p class="section-label">Prensa y Reconocimientos</p>
-        <h2 class="section-title">Lo que dicen de nosotros</h2>
+        <p class="section-label" data-es="Prensa y Reconocimientos" data-en="Press and Awards">Prensa y Reconocimientos</p>
+        <h2 class="section-title" data-es="Lo que dicen de nosotros" data-en="What they say about us">Lo que dicen de nosotros</h2>
       </div>
 
       <div class="awards-row fade-up">
         <div class="award-item">
           <div class="award-icon" style="background: #fff3cd; color: #b8860b;">🏆</div>
-          <span class="award-name">Premio AHK 2025<br>1er Puesto — Política Ambiental</span>
+          <span class="award-name" data-es="C&aacute;mara Alemana (AHK)<br>1er Puesto Sostenibilidad 2025" data-en="German Chamber (AHK)<br>1st Place Sustainability 2025">C&aacute;mara Alemana (AHK)<br>1er Puesto Sostenibilidad 2025</span>
         </div>
         <div class="award-item">
           <div class="award-icon" style="background: #dbeafe; color: #1d4ed8;">🇵🇾</div>
-          <span class="award-name">Marca País<br>Paraguay</span>
+          <span class="award-name" data-es="Marca Pa&iacute;s<br>Calidad certificada REDIEX" data-en="Marca Pa&iacute;s<br>REDIEX certified quality">Marca Pa&iacute;s<br>Calidad certificada REDIEX</span>
         </div>
         <div class="award-item">
           <div class="award-icon" style="background: #d1fae5; color: #059669;">🌿</div>
-          <span class="award-name">Sello Verde<br>Paraguay</span>
+          <span class="award-name" data-es="Sello Verde<br>Uni&oacute;n Industrial Paraguaya" data-en="Sello Verde<br>Paraguayan Industrial Union">Sello Verde<br>Uni&oacute;n Industrial Paraguaya</span>
         </div>
         <div class="award-item">
-          <div class="award-icon" style="background: #ede9fe; color: #7c3aed;">🇪🇺</div>
-          <span class="award-name">AL-Invest Verde<br>Unión Europea</span>
+          <div class="award-icon" style="background: #ede9fe; color: #7c3aed;">🎓</div>
+          <span class="award-name" data-es="Universidad San Carlos<br>Convenio de formaci&oacute;n agr&iacute;cola" data-en="Universidad San Carlos<br>Agricultural training agreement">Universidad San Carlos<br>Convenio de formaci&oacute;n agr&iacute;cola</span>
         </div>
       </div>
 
@@ -1508,32 +1604,32 @@
         <a href="https://www.hortidaily.com/article/9686585/growing-and-educating-in-paraguay/" target="_blank" rel="noopener" class="press-card fade-up">
           <span class="press-source">HortiDaily</span>
           <span class="press-headline">Growing and educating in Paraguay</span>
-          <span class="press-link">Leer artículo →</span>
+          <span class="press-link" data-es="Leer art&iacute;culo &rarr;" data-en="Read article &rarr;">Leer artículo →</span>
         </a>
         <a href="https://www.hortidaily.com/article/9758398/strengthening-paraguay-s-commitment-to-precision-hydroponic-production/" target="_blank" rel="noopener" class="press-card fade-up">
           <span class="press-source">HortiDaily</span>
           <span class="press-headline">Strengthening Paraguay's commitment to precision hydroponic production</span>
-          <span class="press-link">Leer artículo →</span>
+          <span class="press-link" data-es="Leer art&iacute;culo &rarr;" data-en="Read article &rarr;">Leer artículo →</span>
         </a>
         <a href="https://www.hortidaily.es/article/9809580/hidrobio-lanza-sus-tomates-cherry-hidroponicos-redefiniendo-la-experiencia-del-consumidor-paraguayo/" target="_blank" rel="noopener" class="press-card fade-up">
           <span class="press-source">HortiDaily ES</span>
-          <span class="press-headline">HidroBio lanza sus tomates cherry hidropónicos redefiniendo la experiencia del consumidor</span>
-          <span class="press-link">Leer artículo →</span>
+          <span class="press-headline" data-es="HidroBio lanza sus tomates cherry hidrop&oacute;nicos redefiniendo la experiencia del consumidor" data-en="HidroBio launches its hydroponic cherry tomatoes redefining the consumer experience">HidroBio lanza sus tomates cherry hidropónicos redefiniendo la experiencia del consumidor</span>
+          <span class="press-link" data-es="Leer art&iacute;culo &rarr;" data-en="Read article &rarr;">Leer artículo →</span>
         </a>
         <a href="https://www.hortidaily.com/article/9732387/paraguay-hidrobio-joins-al-invest-verde/" target="_blank" rel="noopener" class="press-card fade-up">
           <span class="press-source">HortiDaily</span>
           <span class="press-headline">Paraguay: HidroBio joins AL-Invest Verde</span>
-          <span class="press-link">Leer artículo →</span>
+          <span class="press-link" data-es="Leer art&iacute;culo &rarr;" data-en="Read article &rarr;">Leer artículo →</span>
         </a>
         <a href="https://www.lanacion.com.py/pais/2024/11/07/lanzan-curso-para-cultivar-lechugas-hidroponicas-en-nueva-italia/" target="_blank" rel="noopener" class="press-card fade-up">
-          <span class="press-source">La Nación</span>
-          <span class="press-headline">Lanzan curso para cultivar lechugas hidropónicas en Nueva Italia</span>
-          <span class="press-link">Leer artículo →</span>
+          <span class="press-source">La Naci&oacute;n</span>
+          <span class="press-headline" data-es="Lanzan curso para cultivar lechugas hidrop&oacute;nicas en Nueva Italia" data-en="Course launched for growing hydroponic lettuce in Nueva Italia">Lanzan curso para cultivar lechugas hidropónicas en Nueva Italia</span>
+          <span class="press-link" data-es="Leer art&iacute;culo &rarr;" data-en="Read article &rarr;">Leer artículo →</span>
         </a>
         <a href="https://open.spotify.com/episode/4x4Dg0OHZ5HPODhnAgEuYP" target="_blank" rel="noopener" class="press-card fade-up">
           <span class="press-source">Spotify Podcast</span>
-          <span class="press-headline">Mi Viaje Por La Hidroponía — Ep.47 con Maximiliano Samaniego</span>
-          <span class="press-link">Escuchar →</span>
+          <span class="press-headline" data-es="Mi Viaje Por La Hidropon&iacute;a &mdash; Ep.47 con Maximiliano Samaniego" data-en="My Journey Through Hydroponics &mdash; Ep.47 with Maximiliano Samaniego">Mi Viaje Por La Hidroponía — Ep.47 con Maximiliano Samaniego</span>
+          <span class="press-link" data-es="Escuchar &rarr;" data-en="Listen &rarr;">Escuchar →</span>
         </a>
       </div>
     </div>
@@ -1544,34 +1640,34 @@
     <div class="vision-bg"></div>
     <div class="container">
       <div class="vision-header fade-up">
-        <p class="section-label">El Panorama</p>
-        <h2 class="section-title">De 1.5 a 40 Hectáreas — Ya Empezamos</h2>
-        <p class="section-subtitle">Con 2 hectáreas en construcción hoy, el AgroPark está en marcha. La visión: un parque agrícola integrado de 40 hectáreas en Central Paraguay.</p>
+        <p class="section-label" data-es="El Panorama" data-en="The Big Picture">El Panorama</p>
+        <h2 class="section-title" data-es="De 1.5 a 20 Hect&aacute;reas &mdash; Fase 1 en Marcha" data-en="From 1.5 to 20 Hectares &mdash; Phase 1 Underway">De 1.5 a 20 Hectáreas — Fase 1 en Marcha</h2>
+        <p class="section-subtitle" data-es="Fase 1: 20 hect&aacute;reas de agricultura protegida. 40 hect&aacute;reas de terreno asegurado. Escalando a 40 ha en Fase 2." data-en="Phase 1: 20 hectares of protected agriculture. 40 hectares of secured land. Scaling to 40 ha in Phase 2.">Fase 1: 20 hectáreas de agricultura protegida. 40 hectáreas de terreno asegurado. Escalando a 40 ha en Fase 2.</p>
       </div>
 
       <div class="vision-banner fade-up">
-        <img src="/photos/agropark-render.jpg" alt="HidroBio AgroPark Villeta — Masterplan">
+        <img src="/photos/agropark-render.jpg" alt="HidroBio AgroPark Villeta — Full Park Vision">
         <div class="vision-banner-overlay">
-          <h4>HidroBio AgroPark — 40 hectáreas de agricultura protegida dentro de un parque de 100 hectáreas</h4>
-          <p>Producción, poscosecha y logística integradas — Invernaderos, packing house y cadena de frío en un parque agro-tech en el departamento Central de Paraguay</p>
+          <h4 data-es="HidroBio AgroPark Villeta &mdash; La visi&oacute;n completa" data-en="HidroBio AgroPark Villeta &mdash; The full vision">HidroBio AgroPark Villeta &mdash; La visión completa</h4>
+          <a href="/vision/" class="vision-banner-btn" data-es="Descubr&iacute; la Visi&oacute;n &rarr;" data-en="Discover the Vision &rarr;">Descubrí la Visión →</a>
         </div>
       </div>
 
       <div class="vision-cards fade-up">
         <div class="vision-card">
-          <div class="vision-card-value" style="color: var(--green-accent);">3.5 ha</div>
-          <h3>2026: En Construcción</h3>
-          <p>2 nuevas hectáreas de invernaderos high-tech en obra ahora. Primera cosecha en octubre 2026. Inaugurando el AgroPark Villeta.</p>
+          <div class="vision-card-value" style="color: var(--green-accent);">20 ha</div>
+          <h3 data-es="Fase 1: AgroPark" data-en="Phase 1: AgroPark">Fase 1: AgroPark</h3>
+          <p data-es="20 hect&aacute;reas de invernaderos con tecnolog&iacute;a holandesa. 6 ha propias + 14 ha fondo de inversi&oacute;n. Fase 1 del AgroPark Villeta." data-en="20 hectares of greenhouses with Dutch technology. 6 ha own + 14 ha investment fund. Phase 1 of AgroPark Villeta.">20 hectáreas de invernaderos con tecnología holandesa. 6 ha propias + 14 ha fondo de inversión. Fase 1 del AgroPark Villeta.</p>
         </div>
         <div class="vision-card">
           <div class="vision-card-value" style="color: var(--white);">Export</div>
           <h3>2027: Mercosur</h3>
-          <p>Tomates cherry a Brasil con 2-3× premium. Luego mercados vecinos. Canales europeos como potencial futuro.</p>
+          <p data-es="Tomates cherry a Brasil con 2-3&times; premium. Luego mercados vecinos. Canales europeos como potencial futuro." data-en="Cherry tomatoes to Brazil at 2-3&times; premium. Then neighboring markets. European channels as future potential.">Tomates cherry a Brasil con 2-3× premium. Luego mercados vecinos. Canales europeos como potencial futuro.</p>
         </div>
         <div class="vision-card">
           <div class="vision-card-value" style="color: var(--gold);">Modelo</div>
-          <h3>Replicable</h3>
-          <p>Un negocio local con expertise europeo y capital, escalando con las ventajas estructurales de Paraguay.</p>
+          <h3 data-es="Replicable" data-en="Replicable">Replicable</h3>
+          <p data-es="Un negocio local con expertise europeo y capital, escalando con las ventajas estructurales de Paraguay." data-en="A local business with European expertise and capital, scaling with Paraguay's structural advantages.">Un negocio local con expertise europeo y capital, escalando con las ventajas estructurales de Paraguay.</p>
         </div>
       </div>
     </div>
@@ -1581,31 +1677,31 @@
   <section class="locations" id="ubicaciones">
     <div class="container">
       <div class="locations-header fade-up">
-        <p class="section-label">Nuestras Ubicaciones</p>
-        <h2 class="section-title">Visitanos</h2>
+        <p class="section-label" data-es="Nuestras Ubicaciones" data-en="Our Locations">Nuestras Ubicaciones</p>
+        <h2 class="section-title" data-es="Visitanos" data-en="Visit Us">Visitanos</h2>
       </div>
 
       <div class="locations-grid">
         <div class="location-card fade-up">
           <img src="/photos/aerial-drone.jpg" alt="Invernadero HidroBio en Nueva Italia" class="location-card-img">
           <div class="location-card-body">
-            <h3 class="location-card-title">🌱 Invernadero</h3>
+            <h3 class="location-card-title" data-es="🌱 Invernadero" data-en="🌱 Greenhouse">🌱 Invernadero</h3>
             <p class="location-card-address">Ruta D072<br>Nueva Italia 111102, Central<br>Paraguay</p>
-            <a href="https://g.page/r/CcJMSY5J6IfmEAI/" target="_blank" rel="noopener" class="location-card-link">Ver en Google Maps →</a>
+            <a href="https://g.page/r/CcJMSY5J6IfmEAI/" target="_blank" rel="noopener" class="location-card-link" data-es="Ver en Google Maps &rarr;" data-en="View on Google Maps &rarr;">Ver en Google Maps →</a>
           </div>
         </div>
         <div class="location-card fade-up">
           <iframe class="location-card-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1806.4!2d-57.557755!3d-25.319109!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x945da8d451149b99%3A0x6d8beed35d622dcb!2sLeonismo%20Fernandino%20315!5e0!3m2!1ses-419!2spy!4v1709900000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="location-card-body">
-            <h3 class="location-card-title">🚛 Hub Logístico</h3>
+            <h3 class="location-card-title" data-es="🚛 Hub Log&iacute;stico" data-en="🚛 Logistics Hub">🚛 Hub Logístico</h3>
             <p class="location-card-address">Leonismo Fernandino 315<br>Fernando de la Mora 110308, Central<br>Paraguay</p>
-            <a href="https://g.page/r/CZ2_cqhlXDgVEBM" target="_blank" rel="noopener" class="location-card-link">Ver en Google Maps →</a>
+            <a href="https://g.page/r/CZ2_cqhlXDgVEBM" target="_blank" rel="noopener" class="location-card-link" data-es="Ver en Google Maps &rarr;" data-en="View on Google Maps &rarr;">Ver en Google Maps →</a>
           </div>
         </div>
       </div>
 
       <div class="visit-cta fade-up">
-        <a href="https://zfrmz.com/hsHl7Hg1uznLuGV1ygFS" target="_blank" rel="noopener" class="btn-primary">Solicita tu Visita</a>
+        <a href="https://zfrmz.com/hsHl7Hg1uznLuGV1ygFS" target="_blank" rel="noopener" class="btn-primary" data-es="Solicita tu Visita" data-en="Request a Visit">Solicita tu Visita</a>
       </div>
     </div>
   </section>
@@ -1614,16 +1710,16 @@
   <section class="contact" id="contacto">
     <div class="container">
       <div class="contact-header fade-up">
-        <p class="section-label">Contacto</p>
-        <h2 class="section-title">Hablemos</h2>
-        <p class="section-subtitle">Elegí el canal que mejor te sirva para comunicarte con nosotros.</p>
+        <p class="section-label" data-es="Contacto" data-en="Contact">Contacto</p>
+        <h2 class="section-title" data-es="Hablemos" data-en="Let's Talk">Hablemos</h2>
+        <p class="section-subtitle" data-es="Eleg&iacute; el canal que mejor te sirva para comunicarte con nosotros." data-en="Choose the channel that works best for you to reach us.">Elegí el canal que mejor te sirva para comunicarte con nosotros.</p>
       </div>
 
       <div class="contact-grid">
         <div class="contact-card fade-up">
           <div class="contact-card-icon">🛒</div>
-          <h3 class="contact-card-title">Pedidos</h3>
-          <p class="contact-card-desc">Hacé tu pedido y disfrutá de frescura y sabor cultivados sin suelo.</p>
+          <h3 class="contact-card-title" data-es="Pedidos" data-en="Orders">Pedidos</h3>
+          <p class="contact-card-desc" data-es="Hac&eacute; tu pedido y disfrut&aacute; de frescura y sabor cultivados sin suelo." data-en="Place your order and enjoy freshness and flavor grown without soil.">Hacé tu pedido y disfrutá de frescura y sabor cultivados sin suelo.</p>
           <a href="https://wa.me/595986610012" target="_blank" rel="noopener" class="contact-card-btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             HidroBio Pedidos
@@ -1632,8 +1728,8 @@
 
         <div class="contact-card fade-up">
           <div class="contact-card-icon">💬</div>
-          <h3 class="contact-card-title">Consultas</h3>
-          <p class="contact-card-desc">Dudas, consultas generales o atención al cliente.</p>
+          <h3 class="contact-card-title" data-es="Consultas" data-en="Inquiries">Consultas</h3>
+          <p class="contact-card-desc" data-es="Dudas, consultas generales o atenci&oacute;n al cliente." data-en="Questions, general inquiries or customer service.">Dudas, consultas generales o atención al cliente.</p>
           <a href="https://wa.me/595981982430" target="_blank" rel="noopener" class="contact-card-btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             HidroBio SAC
@@ -1642,8 +1738,8 @@
 
         <div class="contact-card fade-up">
           <div class="contact-card-icon">🏗️</div>
-          <h3 class="contact-card-title">Montaje e Insumos</h3>
-          <p class="contact-card-desc">Interesado en montaje de invernaderos o insumos agrícolas.</p>
+          <h3 class="contact-card-title" data-es="Montaje e Insumos" data-en="Assembly &amp; Supplies">Montaje e Insumos</h3>
+          <p class="contact-card-desc" data-es="Interesado en montaje de invernaderos o insumos agr&iacute;colas." data-en="Interested in greenhouse assembly or agricultural supplies.">Interesado en montaje de invernaderos o insumos agrícolas.</p>
           <a href="https://wa.me/595972858555" target="_blank" rel="noopener" class="contact-card-btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             HidroBio Ventas
@@ -1658,8 +1754,8 @@
         </div>
         <!-- Investor link removed (pitch deck now accessible directly) -->
         <div class="contact-extra">
-          <div class="contact-extra-label">Reseñas</div>
-          <a href="https://g.page/r/CZ2_cqhlXDgVEAI/review" target="_blank" rel="noopener">Dejanos tu reseña</a>
+          <div class="contact-extra-label" data-es="Rese&ntilde;as" data-en="Reviews">Reseñas</div>
+          <a href="https://g.page/r/CZ2_cqhlXDgVEAI/review" target="_blank" rel="noopener" data-es="Dejanos tu rese&ntilde;a" data-en="Leave us a review">Dejanos tu reseña</a>
         </div>
       </div>
     </div>
@@ -1676,7 +1772,7 @@
           <a href="https://www.linkedin.com/company/hidrobio" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://www.youtube.com/@HidroBio" target="_blank" rel="noopener">YouTube</a>
         </div>
-        <p class="footer-copy">&copy; 2026 HidroBio S.A. — Hecho en Paraguay</p>
+        <p class="footer-copy" data-es="&copy; 2026 HidroBio S.A. &mdash; Hecho en Paraguay" data-en="&copy; 2026 HidroBio S.A. &mdash; Made in Paraguay">&copy; 2026 HidroBio S.A. — Hecho en Paraguay</p>
       </div>
     </div>
   </footer>
@@ -1718,7 +1814,9 @@
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 72;
+          // Force-reveal all fade-up elements in the target section
+          target.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
+          const offset = 88;
           window.scrollTo({
             top: target.offsetTop - offset,
             behavior: 'smooth'
@@ -1726,6 +1824,26 @@
         }
       });
     });
+    // Language toggle (ES/EN) with persistence
+    function switchLang(lang) {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.querySelector('.lang-btn[data-lang="' + lang + '"]');
+      if (activeBtn) activeBtn.classList.add('active');
+      document.querySelectorAll('[data-es]').forEach(el => {
+        if (el.dataset[lang]) el.innerHTML = el.dataset[lang];
+      });
+      document.documentElement.lang = lang;
+      document.title = lang === 'es'
+        ? 'HidroBio — Horticultura de Precisión | Paraguay'
+        : 'HidroBio — Precision Horticulture | Paraguay';
+      localStorage.setItem('hidrobio-lang', lang);
+    }
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => switchLang(btn.dataset.lang));
+    });
+    // Restore saved language
+    const savedLang = localStorage.getItem('hidrobio-lang');
+    if (savedLang && savedLang !== 'es') switchLang(savedLang);
   </script>
 </body>
 </html>

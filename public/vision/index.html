@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HidroBio — It's Time to Grow Differently</title>
-  <meta name="description" content="Where nature meets precision. HidroBio is redefining food production in Latin America with Dutch hydroponic technology, AI-driven operations, and a vision for 100 hectares.">
+  <meta name="description" content="Where nature meets precision. HidroBio is redefining food production in South America with Dutch hydroponic technology, AI-driven operations, and a 20-hectare Phase 1 AgroPark scaling to 40 hectares.">
   <meta property="og:title" content="HidroBio — It's Time to Grow Differently">
-  <meta property="og:description" content="Calling all who believe food can be grown differently. Dutch precision. Paraguayan heart. Latin American scale.">
+  <meta property="og:description" content="Calling all who believe food can be grown differently. Dutch precision. Paraguayan heart. South American scale.">
   <meta property="og:image" content="/photos/hero-greenhouse.jpg">
   <link rel="icon" type="image/png" href="/assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,26 +77,55 @@
       border-bottom: 1px solid rgba(34, 197, 94, 0.1);
     }
 
-    .nav-logo {
-      height: 40px;
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      text-decoration: none;
+      margin-right: 32px;
+      flex-shrink: 0;
+    }
+
+    .nav-brand img {
+      height: 32px;
+      width: auto;
       filter: brightness(0) invert(1);
       transition: height 0.3s;
     }
 
-    .nav.scrolled .nav-logo { height: 32px; }
+    .nav.scrolled .nav-brand img { height: 28px; }
+
+    .nav-brand .brand-sep {
+      width: 1px;
+      height: 22px;
+      background: rgba(255, 255, 255, 0.3);
+      margin: 0 10px;
+    }
+
+    .nav-brand .brand-text {
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .lang-toggle { display: flex; gap: 2px; align-items: center; }
+    .lang-btn { padding: 4px 10px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.3); font-size: 11px; font-weight: 600; cursor: pointer; background: transparent; color: rgba(255,255,255,0.7); transition: all 0.2s; }
+    .lang-btn.active { background: var(--green); color: #fff; border-color: var(--green); }
 
     .nav-links {
       display: flex;
-      gap: 32px;
+      gap: 24px;
       list-style: none;
     }
 
     .nav-links a {
       color: rgba(255, 255, 255, 0.7);
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 500;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
       transition: color 0.3s;
     }
@@ -769,6 +798,7 @@
 
     /* ---- Responsive ---- */
     @media (max-width: 1024px) {
+      .nav-links { gap: 20px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .pillar-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
       .cred-grid { grid-template-columns: repeat(2, 1fr); }
@@ -788,6 +818,8 @@
     @media (max-width: 768px) {
       .nav { padding: 16px 24px; }
       .nav-links { display: none; }
+      .nav-brand .brand-sep,
+      .nav-brand .brand-text { display: none; }
       .container { padding: 0 24px; }
       .stat-card { padding: 32px 20px; }
       .vision-stats { grid-template-columns: 1fr; gap: 24px; }
@@ -813,15 +845,21 @@
 
   <!-- Nav -->
   <nav class="nav" id="nav">
-    <img src="/assets/logo-white.svg" alt="HidroBio" class="nav-logo">
+    <a href="#" class="nav-brand">
+      <img src="/assets/logo-white.svg" alt="HidroBio"><span class="brand-sep"></span><span class="brand-text">AgroPark</span>
+    </a>
     <ul class="nav-links">
-      <li><a href="#origin">Origin</a></li>
-      <li><a href="#proof">Proof</a></li>
-      <li><a href="#pillars">Pillars</a></li>
-      <li><a href="#journey">Journey</a></li>
-      <li><a href="#vision">Vision</a></li>
-      <li><a href="#connect">Connect</a></li>
+      <li><a href="#origin" data-en="Origin" data-es="Origen">Origin</a></li>
+      <li><a href="#proof" data-en="Proof" data-es="Pruebas">Proof</a></li>
+      <li><a href="#pillars" data-en="Pillars" data-es="Pilares">Pillars</a></li>
+      <li><a href="#journey" data-en="Journey" data-es="Historia">Journey</a></li>
+      <li><a href="#vision" data-en="Vision" data-es="Visión">Vision</a></li>
+      <li><a href="#connect" data-en="Connect" data-es="Contacto">Connect</a></li>
     </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="es">ES</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
   </nav>
 
   <!-- ======== HERO ======== -->
@@ -830,14 +868,14 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="hero-label">HidroBio AgroPark</p>
-      <h1 class="hero-title">It's Time to<br>Grow <em>Differently</em></h1>
-      <p class="hero-subtitle">
+      <h1 class="hero-title" data-en="It's Time to<br>Grow <em>Differently</em>" data-es="Es Momento de<br>Crecer <em>Diferente</em>">It's Time to<br>Grow <em>Differently</em></h1>
+      <p class="hero-subtitle" data-en="Dutch precision. Paraguayan heart.<br>Redefining food production for South America." data-es="Precisión holandesa. Corazón paraguayo.<br>Redefiniendo la producción de alimentos en Sudamérica.">
         Dutch precision. Paraguayan heart.<br>
-        Redefining food production for Latin America.
+        Redefining food production for South America.
       </p>
       <div class="hero-scroll">
         <div class="scroll-indicator">
-          <span>Discover</span>
+          <span data-en="Discover" data-es="Descubrir">Discover</span>
           <div class="scroll-line"></div>
         </div>
       </div>
@@ -847,7 +885,7 @@
   <!-- ======== CALLING ======== -->
   <section class="section calling" id="origin">
     <div class="container">
-      <p class="calling-text reveal">
+      <p class="calling-text reveal" data-en="Calling all who believe that food can be grown <span class='highlight'>without compromise</span>. Growers, innovators, investors, and changemakers who know that the future of agriculture is not in the soil &mdash; it's in the <span class='highlight'>precision of light, water, and data</span>." data-es="Llamamos a todos los que creen que los alimentos pueden cultivarse <span class='highlight'>sin compromisos</span>. Productores, innovadores, inversores y agentes de cambio que saben que el futuro de la agricultura no está en el suelo &mdash; está en la <span class='highlight'>precisión de la luz, el agua y los datos</span>.">
         Calling all who believe that food can be grown
         <span class="highlight">without compromise</span>.
         Growers, innovators, investors, and changemakers
@@ -862,7 +900,7 @@
     <img src="/photos/interior-tomatoes.jpg" alt="Inside HidroBio greenhouse" loading="lazy">
     <div class="photo-break-overlay"></div>
     <div class="photo-break-text reveal">
-      <h3>Where <em>nature</em> meets<br><em>precision</em></h3>
+      <h3 data-en="Where <em>nature</em> meets<br><em>precision</em>" data-es="Donde la <em>naturaleza</em> se encuentra con<br>la <em>precisión</em>">Where <em>nature</em> meets<br><em>precision</em></h3>
     </div>
   </div>
 
@@ -872,19 +910,19 @@
       <div class="stats-grid">
         <div class="stat-card reveal">
           <div class="stat-number"><span class="counter" data-target="8">0</span></div>
-          <div class="stat-label">Years of harvests</div>
+          <div class="stat-label" data-en="Years of harvests" data-es="Años de cosechas">Years of harvests</div>
         </div>
         <div class="stat-card reveal reveal-delay-1">
           <div class="stat-number"><span class="counter" data-target="90">0</span>%</div>
-          <div class="stat-label">Less water used</div>
+          <div class="stat-label" data-en="Less water used" data-es="Menos agua">Less water used</div>
         </div>
         <div class="stat-card reveal reveal-delay-2">
           <div class="stat-number"><span class="counter" data-target="10">0</span>x</div>
-          <div class="stat-label">Higher yield per hectare</div>
+          <div class="stat-label" data-en="Higher yield per hectare" data-es="Mayor rendimiento por hectárea">Higher yield per hectare</div>
         </div>
         <div class="stat-card reveal reveal-delay-3">
           <div class="stat-number"><span class="counter" data-target="50">0</span>+</div>
-          <div class="stat-label">B2B clients served</div>
+          <div class="stat-label" data-en="B2B clients served" data-es="Clientes B2B">B2B clients served</div>
         </div>
       </div>
     </div>
@@ -892,18 +930,18 @@
 
   <!-- ======== PHOTO BREAK 2 ======== -->
   <div class="photo-break">
-    <img src="/photos/coco-slab.jpg" alt="Coco slab growing medium" loading="lazy">
+    <img src="/photos/albahaca.jpg" alt="Fresh basil grown hydroponically" loading="lazy">
     <div class="photo-break-overlay"></div>
     <div class="photo-break-text reveal">
-      <h3>No soil. No pesticides.<br>Just <em>science</em></h3>
+      <h3 data-en="No soil. No pesticides.<br>Science in harmony with <em>nature</em>" data-es="Sin suelo. Sin pesticidas.<br>Ciencia en armonía con la <em>naturaleza</em>">No soil. No pesticides.<br>Science in harmony with <em>nature</em></h3>
     </div>
   </div>
 
   <!-- ======== THREE PILLARS ======== -->
   <section class="section pillars" id="pillars">
     <div class="container">
-      <p class="pillars-label reveal">What Drives Us</p>
-      <h2 class="pillars-title reveal">Technology as a <em>Tool</em>,<br>Nature as our <em>Guide</em></h2>
+      <p class="pillars-label reveal" data-en="What Drives Us" data-es="Lo Que Nos Impulsa">What Drives Us</p>
+      <h2 class="pillars-title reveal" data-en="Technology as a <em>Tool</em>,<br>Nature as our <em>Guide</em>" data-es="La Tecnología como <em>Herramienta</em>,<br>la Naturaleza como <em>Guía</em>">Technology as a <em>Tool</em>,<br>Nature as our <em>Guide</em></h2>
 
       <div class="pillar-grid">
         <div class="pillar reveal">
@@ -911,9 +949,9 @@
             <img src="/photos/young-plants-greenhouse.jpg" alt="Climate controlled greenhouse" loading="lazy">
           </div>
           <div class="pillar-content">
-            <div class="pillar-number">01 &mdash; CLIMATE INTELLIGENCE</div>
-            <h3 class="pillar-name">Every Degree Matters</h3>
-            <p class="pillar-desc">Hoogendoorn climate computers with recipe-based automation. Automatic roof windows, precision ventilation, and real-time weather integration. Dutch engineering, calibrated for the subtropics.</p>
+            <div class="pillar-number" data-en="01 &mdash; CLIMATE INTELLIGENCE" data-es="01 &mdash; INTELIGENCIA CLIMÁTICA">01 &mdash; CLIMATE INTELLIGENCE</div>
+            <h3 class="pillar-name" data-en="Every Degree Matters" data-es="Cada Grado Importa">Every Degree Matters</h3>
+            <p class="pillar-desc" data-en="Dutch greenhouse automation — climate, water, energy, and data systems with recipe-based control. Automatic roof windows, precision ventilation, and real-time weather integration. Calibrated for the subtropics." data-es="Automatización holandesa de invernaderos — sistemas de clima, agua, energía y datos con control basado en recetas. Ventanas de techo automáticas, ventilación de precisión e integración meteorológica en tiempo real. Calibrado para el subtrópico.">Dutch greenhouse automation — climate, water, energy, and data systems with recipe-based control. Automatic roof windows, precision ventilation, and real-time weather integration. Calibrated for the subtropics.</p>
           </div>
         </div>
 
@@ -922,20 +960,20 @@
             <img src="/photos/lettuce-varieties.jpg" alt="Lettuce varieties" loading="lazy">
           </div>
           <div class="pillar-content">
-            <div class="pillar-number">02 &mdash; PRECISION GROWING</div>
-            <h3 class="pillar-name">More With Less</h3>
-            <p class="pillar-desc">Hydroponics on coco slab substrates. 90% less water, 60% less fertilizer, 95% less pesticides. Every nutrient measured, every drop counted. This is agriculture reimagined.</p>
+            <div class="pillar-number" data-en="02 &mdash; PRECISION GROWING" data-es="02 &mdash; CULTIVO DE PRECISIÓN">02 &mdash; PRECISION GROWING</div>
+            <h3 class="pillar-name" data-en="More With Less" data-es="Más Con Menos">More With Less</h3>
+            <p class="pillar-desc" data-en="Hydroponics on coco slab substrates. 90% less water, 60% less fertilizer, 95% less pesticides. Every nutrient measured, every drop counted. This is agriculture reimagined." data-es="Hidroponía en sustratos de fibra de coco. 90% menos agua, 60% menos fertilizante, 95% menos pesticidas. Cada nutriente medido, cada gota contada. Esto es agricultura reimaginada.">Hydroponics on coco slab substrates. 90% less water, 60% less fertilizer, 95% less pesticides. Every nutrient measured, every drop counted. This is agriculture reimagined.</p>
           </div>
         </div>
 
         <div class="pillar reveal reveal-delay-2">
           <div class="pillar-image">
-            <img src="/photos/retail-display-wide.jpg" alt="HidroBio products in supermarket" loading="lazy">
+            <img src="/photos/aerial-drone.jpg" alt="HidroBio greenhouse aerial view" loading="lazy">
           </div>
           <div class="pillar-content">
-            <div class="pillar-number">03 &mdash; AI-POWERED OPERATIONS</div>
-            <h3 class="pillar-name">Intelligence at Scale</h3>
-            <p class="pillar-desc">From harvest prediction to automated sales, our AI systems connect greenhouse, warehouse, and customer. Climate-aware allocation, real-time pricing intelligence, and WhatsApp-native ordering.</p>
+            <div class="pillar-number" data-en="03 &mdash; AI-POWERED OPERATIONS" data-es="03 &mdash; OPERACIONES CON IA">03 &mdash; AI-POWERED OPERATIONS</div>
+            <h3 class="pillar-name" data-en="From Greenhouse to Market" data-es="Del Invernadero al Mercado">From Greenhouse to Market</h3>
+            <p class="pillar-desc" data-en="AI runs end-to-end: climate automation in the greenhouse, harvest prediction, pricing intelligence, and automated sales via WhatsApp. Our platform Emnia &mdash; accepted into Hummelnest, a Raiffeisen-backed accelerator in Austria &mdash; bridges the gap between production and market across South America and Europe." data-es="La IA opera de punta a punta: automatizaci&oacute;n clim&aacute;tica en el invernadero, predicci&oacute;n de cosecha, inteligencia de precios y ventas automatizadas por WhatsApp. Nuestra plataforma Emnia &mdash; aceptada en Hummelnest, aceleradora respaldada por Raiffeisen en Austria &mdash; conecta producci&oacute;n y mercado en Sudam&eacute;rica y Europa.">AI runs end-to-end: climate automation in the greenhouse, harvest prediction, pricing intelligence, and automated sales via WhatsApp. Our platform Emnia &mdash; accepted into Hummelnest, a Raiffeisen-backed accelerator in Austria &mdash; bridges the gap between production and market across South America and Europe.</p>
           </div>
         </div>
       </div>
@@ -947,21 +985,21 @@
     <img src="/photos/interior-cherry.jpg" alt="Cherry tomatoes growing" loading="lazy">
     <div class="photo-break-overlay"></div>
     <div class="photo-break-text reveal">
-      <h3>Grown with <em>precision</em>,<br>delivered with <em>purpose</em></h3>
+      <h3 data-en="Grown with <em>precision</em>,<br>delivered with <em>purpose</em>" data-es="Cultivado con <em>precisión</em>,<br>entregado con <em>propósito</em>">Grown with <em>precision</em>,<br>delivered with <em>purpose</em></h3>
     </div>
   </div>
 
   <!-- ======== TIMELINE ======== -->
   <section class="timeline-section" id="journey">
     <div class="container">
-      <p class="timeline-label reveal">Our Journey</p>
-      <h2 class="timeline-title reveal">From a <em>single greenhouse</em><br>to a <em>100-hectare vision</em></h2>
+      <p class="timeline-label reveal" data-en="Our Journey" data-es="Nuestro Camino">Our Journey</p>
+      <h2 class="timeline-title reveal" data-en="From a <em>single greenhouse</em><br>to a <em>20-hectare AgroPark</em>" data-es="De un <em>solo invernadero</em><br>a un <em>AgroPark de 20 hectáreas</em>">From a <em>single greenhouse</em><br>to a <em>20-hectare AgroPark</em></h2>
 
       <div class="timeline-items">
         <div class="timeline-item reveal">
           <div class="tl-content">
             <div class="tl-year">2018</div>
-            <p class="tl-text"><strong>First seeds planted.</strong> A 5,000 m&sup2; lettuce greenhouse. No investors, no playbook. Just the conviction that Paraguay deserved better food.</p>
+            <p class="tl-text" data-en="<strong>Founded.</strong> First lettuce greenhouses &mdash; building distribution chain, learning year-round production in Paraguay." data-es="<strong>Fundación.</strong> Primeros invernaderos de lechuga &mdash; construyendo la cadena de distribución, aprendiendo producción durante todo el año en Paraguay."><strong>Founded.</strong> First lettuce greenhouses &mdash; building distribution chain, learning year-round production in Paraguay.</p>
           </div>
           <div class="tl-dot"></div>
           <div class="tl-empty"></div>
@@ -971,15 +1009,33 @@
           <div class="tl-empty"></div>
           <div class="tl-dot"></div>
           <div class="tl-content">
-            <div class="tl-year">2023</div>
-            <p class="tl-text"><strong>Marca Pa&iacute;s certification.</strong> International recognition. Our tomatoes, peppers, and lettuces in 50+ B2B accounts. Proof that hydroponic quality sells.</p>
+            <div class="tl-year">2019</div>
+            <p class="tl-text" data-en="<strong>First commercial B2B sales.</strong> Tomato yield reaches 38 kg/m&sup2;. The model works." data-es="<strong>Primeras ventas comerciales B2B.</strong> El rendimiento de tomate alcanza 38 kg/m&sup2;. El modelo funciona."><strong>First commercial B2B sales.</strong> Tomato yield reaches 38 kg/m&sup2;. The model works.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="tl-content">
+            <div class="tl-year">2022</div>
+            <p class="tl-text" data-en="<strong>50+ B2B accounts.</strong> Supermarkets and HoReCa. Universidad San Carlos research partnership signed." data-es="<strong>50+ cuentas B2B.</strong> Supermercados y HoReCa. Convenio de investigaci&oacute;n con Universidad San Carlos."><strong>50+ B2B accounts.</strong> Supermarkets and HoReCa. Universidad San Carlos research partnership signed.</p>
+          </div>
+          <div class="tl-dot"></div>
+          <div class="tl-empty"></div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="tl-empty"></div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-year">2024</div>
+            <p class="tl-text" data-en="<strong>European technology partnerships.</strong> 1 ha high-tech expansion designed. Dutch climate automation. Kritifil diffusion film." data-es="<strong>Alianzas tecnol&oacute;gicas europeas.</strong> Expansi&oacute;n high-tech de 1 ha dise&ntilde;ada. Automatizaci&oacute;n clim&aacute;tica holandesa. Film de difusi&oacute;n Kritifil."><strong>European technology partnerships.</strong> 1 ha high-tech expansion designed. Dutch climate automation. Kritifil diffusion film.</p>
           </div>
         </div>
 
         <div class="timeline-item reveal">
           <div class="tl-content">
             <div class="tl-year">2025</div>
-            <p class="tl-text"><strong>1 hectare high-tech greenhouse.</strong> Hoogendoorn climate computers. Kritifil diffusion film. Automated ventilation. Mid-tech Dutch standard &mdash; top-tier for Latin America.</p>
+            <p class="tl-text" data-en="<strong>1 ha high-tech greenhouse operational.</strong> 40 ha land secured at AgroPark Villeta. Revenue validated at $539K/ha. Marca Pa&iacute;s certified. AHK 1st Place Most Sustainable Company. Sello Verde." data-es="<strong>1 ha de invernadero high-tech operativo.</strong> 40 ha aseguradas en AgroPark Villeta. Ingresos validados a $539K/ha. Marca Pa&iacute;s certificada. AHK 1er Lugar Empresa M&aacute;s Sostenible. Sello Verde."><strong>1 ha high-tech greenhouse operational.</strong> 40 ha land secured at AgroPark Villeta. Revenue validated at $539K/ha. Marca Pa&iacute;s certified. AHK 1st Place Most Sustainable Company. Sello Verde.</p>
           </div>
           <div class="tl-dot"></div>
           <div class="tl-empty"></div>
@@ -990,14 +1046,14 @@
           <div class="tl-dot"></div>
           <div class="tl-content">
             <div class="tl-year">2026</div>
-            <p class="tl-text"><strong>AgroPark Villeta.</strong> 100 hectares secured. 2 new hectares under construction. AI-powered operations. European investor partnerships. The platform is ready to scale.</p>
+            <p class="tl-text" data-en="<strong>AgroPark Phase 1 launches.</strong> 2 ha arriving, 20 ha planned. $16.8M fund for 14 ha. Dutch greenhouse technology. Hummelnest / Raiffeisen accelerator. 7 tranches, 2 ha every 6 months." data-es="<strong>Lanzamiento de AgroPark Fase 1.</strong> 2 ha en camino, 20 ha planificadas. Fondo de $16.8M para 14 ha. Tecnología holandesa de invernaderos. Aceleradora Hummelnest / Raiffeisen. 7 tramos, 2 ha cada 6 meses."><strong>AgroPark Phase 1 launches.</strong> 2 ha arriving, 20 ha planned. $16.8M fund for 14 ha. Dutch greenhouse technology. Hummelnest / Raiffeisen accelerator. 7 tranches, 2 ha every 6 months.</p>
           </div>
         </div>
 
         <div class="timeline-item reveal">
           <div class="tl-content">
-            <div class="tl-year">2030</div>
-            <p class="tl-text"><strong>The vision.</strong> 20 hectares under Kritifil premium film. Export to Brazil, Argentina, Bolivia. Latin America's reference greenhouse operation. Growing 4 hectares per year.</p>
+            <div class="tl-year">2029&ndash;30</div>
+            <p class="tl-text" data-en="<strong>20 ha fully operational.</strong> Export to Brazil, Argentina, Bolivia. Phase 2 planning: scaling to 40 hectares total." data-es="<strong>20 ha totalmente operativas.</strong> Exportación a Brasil, Argentina, Bolivia. Planificación Fase 2: escalando a 40 hectáreas en total."><strong>20 ha fully operational.</strong> Export to Brazil, Argentina, Bolivia. Phase 2 planning: scaling to 40 hectares total.</p>
           </div>
           <div class="tl-dot"></div>
           <div class="tl-empty"></div>
@@ -1011,8 +1067,8 @@
     <div class="container">
       <div class="reveal">
         <div class="quote-mark">&ldquo;</div>
-        <p class="quote-text">We didn't come to Paraguay to build a farm. We came to build a platform that proves food production can be intelligent, sustainable, and profitable &mdash; all at once.</p>
-        <p class="quote-author"><strong>Daniel Stanca</strong> &mdash; Co-Founder & CTO</p>
+        <p class="quote-text" data-en="We didn't come to Paraguay to build a farm. We came to build a platform that proves food production can be intelligent, sustainable, and profitable &mdash; all at once." data-es="No vinimos a Paraguay a construir una granja. Vinimos a construir una plataforma que demuestre que la producción de alimentos puede ser inteligente, sostenible y rentable &mdash; todo a la vez.">We didn't come to Paraguay to build a farm. We came to build a platform that proves food production can be intelligent, sustainable, and profitable &mdash; all at once.</p>
+        <p class="quote-author" data-en="<strong>Daniel Stanca</strong> &mdash; Co-Founder & CTO, based in Switzerland" data-es="<strong>Daniel Stanca</strong> &mdash; Cofundador y CTO, basado en Suiza"><strong>Daniel Stanca</strong> &mdash; Co-Founder & CTO, based in Switzerland</p>
       </div>
     </div>
   </section>
@@ -1022,20 +1078,20 @@
     <div class="container">
       <div class="cred-grid reveal">
         <div class="cred-item">
-          <img src="/photos/marca-pais-certificate-digital.jpg" alt="Marca Pais" loading="lazy">
-          <p>Marca Pa&iacute;s Paraguay</p>
+          <img src="/photos/marca-pais-certificate-digital.jpg" alt="Marca Pais Paraguay" loading="lazy">
+          <p data-en="Marca Pa&iacute;s &mdash; National quality certification (REDIEX, 2025)" data-es="Marca Pa&iacute;s &mdash; Certificación nacional de calidad (REDIEX, 2025)">Marca Pa&iacute;s &mdash; National quality certification (REDIEX, 2025)</p>
         </div>
         <div class="cred-item">
-          <img src="/photos/premio-ahk-ceremony.jpeg" alt="AHK Award" loading="lazy">
-          <p>AHK Innovation Award</p>
+          <img src="/photos/premio-ahk-ceremony.jpeg" alt="AHK Sustainability Award" loading="lazy">
+          <p data-en="German Chamber of Commerce &mdash; 1st Place, Most Sustainable Company in Paraguay (2025)" data-es="Cámara de Comercio Alemana &mdash; 1er Lugar, Empresa Más Sostenible de Paraguay (2025)">German Chamber of Commerce &mdash; 1st Place, Most Sustainable Company in Paraguay (2025)</p>
         </div>
         <div class="cred-item">
-          <img src="/photos/sello-verde-eu-banners.jpg" alt="Sello Verde EU" loading="lazy">
-          <p>EU Sello Verde Program</p>
+          <img src="/photos/sello-verde-eu-banners.jpg" alt="Sello Verde" loading="lazy">
+          <p data-en="Sello Verde &mdash; Environmental certification, Uni&oacute;n Industrial Paraguaya (2025)" data-es="Sello Verde &mdash; Certificación ambiental, Uni&oacute;n Industrial Paraguaya (2025)">Sello Verde &mdash; Environmental certification, Uni&oacute;n Industrial Paraguaya (2025)</p>
         </div>
         <div class="cred-item">
-          <img src="/photos/convenio-usc.jpg" alt="USC Partnership" loading="lazy">
-          <p>University Partnership</p>
+          <img src="/photos/convenio-usc.jpg" alt="Universidad San Carlos" loading="lazy">
+          <p data-en="Universidad San Carlos &mdash; Agricultural research &amp; training partnership" data-es="Universidad San Carlos &mdash; Alianza de investigación agrícola y capacitación">Universidad San Carlos &mdash; Agricultural research &amp; training partnership</p>
         </div>
       </div>
     </div>
@@ -1047,24 +1103,24 @@
     <div class="container">
       <div class="vision-content">
         <p class="vision-label reveal">AgroPark Villeta</p>
-        <h2 class="vision-title reveal">100 Hectares.<br>One <em>Vision</em>.</h2>
-        <p class="vision-desc reveal">
-          AgroPark is not a greenhouse. It's infrastructure for the future of food
-          in Latin America. Shared logistics, energy, water treatment, and cold chain &mdash;
-          enabling growers to produce at scale with radically lower costs.
+        <h2 class="vision-title reveal" data-en="20 Hectares.<br>Phase <em>One</em>." data-es="20 Hectáreas.<br>Fase <em>Uno</em>.">20 Hectares.<br>Phase <em>One</em>.</h2>
+        <p class="vision-desc reveal" data-en="Phase 1: 20 hectares of protected agriculture powered by Dutch greenhouse technology. 6 ha HidroBio-owned, 14 ha through a $16.8M investment fund. Shared logistics, energy, water treatment, and cold chain &mdash; scaling to 40 hectares in Phase 2." data-es="Fase 1: 20 hectáreas de agricultura protegida impulsada por tecnología holandesa de invernaderos. 6 ha propiedad de HidroBio, 14 ha a través de un fondo de inversión de $16.8M. Logística compartida, energía, tratamiento de agua y cadena de frío &mdash; escalando a 40 hectáreas en la Fase 2.">
+          Phase 1: 20 hectares of protected agriculture powered by Dutch greenhouse technology.
+          6 ha HidroBio-owned, 14 ha through a $16.8M investment fund. Shared logistics,
+          energy, water treatment, and cold chain &mdash; scaling to 40 hectares in Phase 2.
         </p>
         <div class="vision-stats reveal">
           <div>
-            <div class="vision-stat-number">100 ha</div>
-            <div class="vision-stat-label">Land secured</div>
+            <div class="vision-stat-number">40 ha</div>
+            <div class="vision-stat-label" data-en="Land secured" data-es="Terreno asegurado">Land secured</div>
           </div>
           <div>
             <div class="vision-stat-number">290M</div>
-            <div class="vision-stat-label">Mercosur market</div>
+            <div class="vision-stat-label" data-en="Mercosur market" data-es="Mercado Mercosur">Mercosur market</div>
           </div>
           <div>
             <div class="vision-stat-number">15,000+</div>
-            <div class="vision-stat-label">People fed per hectare</div>
+            <div class="vision-stat-label" data-en="People fed per hectare" data-es="Personas alimentadas por hectárea">People fed per hectare</div>
           </div>
         </div>
       </div>
@@ -1076,22 +1132,22 @@
     <img src="/photos/construction.jpg" alt="AgroPark under construction" loading="lazy">
     <div class="photo-break-overlay"></div>
     <div class="photo-break-text reveal">
-      <h3>Being <em>built</em>.<br>Right <em>now</em>.</h3>
+      <h3 data-en="Being <em>built</em>.<br>Right <em>now</em>." data-es="En <em>construcción</em>.<br>Ahora <em>mismo</em>.">Being <em>built</em>.<br>Right <em>now</em>.</h3>
     </div>
   </div>
 
   <!-- ======== FINALE ======== -->
   <section class="finale section" id="connect">
     <div class="finale-content">
-      <p class="finale-tagline reveal">The Future is Growing</p>
-      <h2 class="finale-title reveal">It's Time to<br>Grow <em>Differently</em></h2>
-      <p class="finale-sub reveal">
+      <p class="finale-tagline reveal" data-en="The Future is Growing" data-es="El Futuro Está Creciendo">The Future is Growing</p>
+      <h2 class="finale-title reveal" data-en="It's Time to<br>Grow <em>Differently</em>" data-es="Es Momento de<br>Crecer <em>Diferente</em>">It's Time to<br>Grow <em>Differently</em></h2>
+      <p class="finale-sub reveal" data-en="Join us. As a partner, an investor,<br>or simply someone who believes that better food<br>starts with better thinking." data-es="Únete. Como socio, como inversor,<br>o simplemente como alguien que cree que mejores alimentos<br>comienzan con mejor pensamiento.">
         Join us. As a partner, an investor,<br>
         or simply someone who believes that better food<br>
         starts with better thinking.
       </p>
       <div class="reveal">
-        <a href="mailto:daniel@hidrobio.com.py" class="cta-btn">Let's Talk</a>
+        <a href="mailto:daniel@hidrobio.com.py" class="cta-btn" data-en="Let's Talk" data-es="Hablemos">Let's Talk</a>
       </div>
     </div>
   </section>
@@ -1099,7 +1155,7 @@
   <!-- Footer -->
   <footer class="footer">
     <img src="/assets/logo-white.svg" alt="HidroBio" class="footer-logo">
-    <p>HidroBio Paraguay &mdash; Horticultura de Precisi&oacute;n</p>
+    <p data-en="HidroBio Paraguay &mdash; Precision Horticulture" data-es="HidroBio Paraguay &mdash; Horticultura de Precisión">HidroBio Paraguay &mdash; Horticultura de Precisi&oacute;n</p>
   </footer>
 
   <script>
@@ -1212,6 +1268,31 @@
         if (target) target.scrollIntoView({ behavior: 'smooth' });
       });
     });
+  </script>
+
+  <script>
+    // Language toggle (ES default) with persistence
+    function switchLang(lang) {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      var activeBtn = document.querySelector('.lang-btn[data-lang="' + lang + '"]');
+      if (activeBtn) activeBtn.classList.add('active');
+      document.querySelectorAll('[data-es]').forEach(el => {
+        if (el.dataset[lang]) el.innerHTML = el.dataset[lang];
+      });
+      document.documentElement.lang = lang;
+      document.title = lang === 'es'
+        ? 'HidroBio — Es Momento de Crecer Diferente'
+        : 'HidroBio — It\'s Time to Grow Differently';
+      localStorage.setItem('hidrobio-lang', lang);
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => switchLang(btn.dataset.lang));
+    });
+
+    // Restore saved language, default to Spanish
+    var savedLang = localStorage.getItem('hidrobio-lang') || 'es';
+    switchLang(savedLang);
   </script>
 
 </body>

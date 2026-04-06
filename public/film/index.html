@@ -316,6 +316,24 @@
       visibility: hidden;
     }
 
+    .play-brand {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 8px;
+    }
+    .play-brand .brand-sep {
+      width: 1px;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.3);
+      margin: 0 12px;
+    }
+    .play-brand .brand-text {
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
     .play-logo {
       height: 48px;
       filter: brightness(0) invert(1);
@@ -540,7 +558,11 @@
 
   <!-- Play Screen -->
   <div class="play-screen" id="playScreen">
-    <img src="/assets/logo-white.svg" alt="HidroBio" class="play-logo">
+    <div class="play-brand">
+      <img src="/assets/logo-white.svg" alt="HidroBio" class="play-logo">
+      <span class="brand-sep"></span>
+      <span class="brand-text">AgroPark</span>
+    </div>
     <div class="play-btn" id="playBtn">
       <div class="play-triangle"></div>
     </div>
@@ -578,7 +600,11 @@
     <div class="scene" data-duration="4000">
       <div class="scene-overlay" style="background: #000"></div>
       <div class="scene-content">
-        <img src="/assets/logo-white.svg" alt="HidroBio" style="height:56px; margin:0 auto; filter:brightness(0) invert(1);" class="fade-in">
+        <div class="fade-in" style="display:flex; align-items:center; justify-content:center; gap:0;">
+          <img src="/assets/logo-white.svg" alt="HidroBio" style="height:56px; filter:brightness(0) invert(1);">
+          <span style="width:1px; height:28px; background:rgba(255,255,255,0.3); margin:0 14px;"></span>
+          <span style="font-weight:800; font-size:24px; color:var(--white); letter-spacing:-0.02em;">AgroPark</span>
+        </div>
       </div>
     </div>
 
@@ -616,7 +642,7 @@
       <div class="scene-content">
         <p class="scene-label fade-in">HidroBio AgroPark</p>
         <h1 class="scene-title fade-in fade-in-d1">It's Time to<br>Grow <em>Differently</em></h1>
-        <p class="scene-subtitle fade-in fade-in-d2">Dutch precision. Paraguayan heart.<br>Redefining food production for Latin America.</p>
+        <p class="scene-subtitle fade-in fade-in-d2">Dutch precision. Paraguayan heart.<br>Redefining food production for South America.</p>
       </div>
     </div>
 
@@ -680,7 +706,7 @@
           <div class="pill fade-in fade-in-d2">
             <div class="pill-num">01</div>
             <div class="pill-name">Climate Intelligence</div>
-            <div class="pill-desc">Hoogendoorn computers. Recipe-based automation. Dutch engineering for the subtropics.</div>
+            <div class="pill-desc">Dutch greenhouse automation. Climate, water, energy, and data. Recipe-based control for the subtropics.</div>
           </div>
           <div class="pill fade-in fade-in-d3">
             <div class="pill-num">02</div>
@@ -723,15 +749,15 @@
           </div>
           <div class="fade-in fade-in-d3" style="display:flex; align-items:baseline; gap:16px; justify-content:center">
             <span style="font-size:2rem; font-weight:800; color:var(--green); font-variant-numeric:tabular-nums">2025</span>
-            <span style="color:var(--gray); font-size:1rem">1 ha high-tech. Hoogendoorn. Kritifil. Dutch standard.</span>
+            <span style="color:var(--gray); font-size:1rem">1 ha high-tech. Dutch climate automation. Kritifil. World-class standard.</span>
           </div>
           <div class="fade-in fade-in-d4" style="display:flex; align-items:baseline; gap:16px; justify-content:center">
             <span style="font-size:2rem; font-weight:800; color:var(--green); font-variant-numeric:tabular-nums">2026</span>
-            <span style="color:var(--gray); font-size:1rem">AgroPark Villeta. 100 ha secured. European partnerships.</span>
+            <span style="color:var(--gray); font-size:1rem">AgroPark Villeta. 40 ha secured. 20 ha Phase 1. European partnerships.</span>
           </div>
           <div class="fade-in fade-in-d5" style="display:flex; align-items:baseline; gap:16px; justify-content:center">
             <span style="font-size:2rem; font-weight:800; color:var(--green); font-variant-numeric:tabular-nums">2030</span>
-            <span style="color:var(--gray); font-size:1rem">20 ha under Kritifil. Growing 4 ha per year. Export at scale.</span>
+            <span style="color:var(--gray); font-size:1rem">Phase 2: scaling to 40 ha. Export to Brazil, Argentina, Bolivia.</span>
           </div>
         </div>
       </div>
@@ -753,10 +779,10 @@
       <div class="scene-overlay" style="background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 100%)"></div>
       <div class="scene-content">
         <p class="scene-label fade-in">AgroPark Villeta</p>
-        <h2 class="scene-title fade-in fade-in-d1" style="font-size:clamp(2rem,5vw,4rem)">100 Hectares.<br>One <em>Vision</em>.</h2>
+        <h2 class="scene-title fade-in fade-in-d1" style="font-size:clamp(2rem,5vw,4rem)">20 Hectares.<br>Phase <em>One</em>.</h2>
         <div class="stats-row fade-in fade-in-d2" style="margin-top:32px">
           <div class="stat">
-            <div class="stat-num">100 ha</div>
+            <div class="stat-num">40 ha</div>
             <div class="stat-lbl">Land secured</div>
           </div>
           <div class="stat">
