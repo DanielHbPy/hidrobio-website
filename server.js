@@ -61,13 +61,33 @@ function handleRequest(req, res) {
     return;
   }
 
+  // Branded short link → Zoho Forms visit request
+  if (pathname === '/visita' || pathname === '/visita/') {
+    res.writeHead(302, {
+      Location: 'https://forms.hidrobio.com.py/hidrobio/form/SolicituddeVisita/formperma/Nyt6RiL7YKqwl9dGXbPIMvTrrQuEaUkvykEM-0naprU'
+    });
+    res.end();
+    return;
+  }
+
   // Directory index: serve index.html for paths ending in /
   if (pathname.endsWith('/')) {
     pathname += 'index.html';
   }
 
-  const filePath = path.join(__dirname, 'public', pathname);
-  const ext = path.extname(filePath);
+  let filePath = path.join(__dirname, 'public', pathname);
+  let ext = path.extname(filePath);
+
+  // Bare-path directory (e.g. /privacidad): if it points to a directory with
+  // index.html, serve that instead of falling through to the SPA fallback.
+  if (!ext) {
+    try {
+      if (fs.statSync(filePath).isDirectory()) {
+        filePath = path.join(filePath, 'index.html');
+        ext = '.html';
+      }
+    } catch {}
+  }
 
   try {
     const content = fs.readFileSync(filePath);
