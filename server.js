@@ -75,8 +75,19 @@ function handleRequest(req, res) {
     pathname += 'index.html';
   }
 
-  const filePath = path.join(__dirname, 'public', pathname);
-  const ext = path.extname(filePath);
+  let filePath = path.join(__dirname, 'public', pathname);
+  let ext = path.extname(filePath);
+
+  // Bare-path directory (e.g. /privacidad): if it points to a directory with
+  // index.html, serve that instead of falling through to the SPA fallback.
+  if (!ext) {
+    try {
+      if (fs.statSync(filePath).isDirectory()) {
+        filePath = path.join(filePath, 'index.html');
+        ext = '.html';
+      }
+    } catch {}
+  }
 
   try {
     const content = fs.readFileSync(filePath);
