@@ -61,6 +61,15 @@ function handleRequest(req, res) {
     return;
   }
 
+  // Branded short link → Zoho Forms visit request
+  if (pathname === '/visita' || pathname === '/visita/') {
+    res.writeHead(302, {
+      Location: 'https://forms.hidrobio.com.py/hidrobio/form/SolicituddeVisita/formperma/Nyt6RiL7YKqwl9dGXbPIMvTrrQuEaUkvykEM-0naprU'
+    });
+    res.end();
+    return;
+  }
+
   // Directory index: serve index.html for paths ending in /
   if (pathname.endsWith('/')) {
     pathname += 'index.html';

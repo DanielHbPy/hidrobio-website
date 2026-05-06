@@ -1,0 +1,348 @@
+/* ============================================================
+   HidroBio Custom Theme for Zoho Forms
+   ------------------------------------------------------------
+   Aplica esto en: Zoho Forms → Editor → Themes → Custom CSS
+   (o "Edit Theme" → "Custom CSS")
+
+   Paleta alineada con www.hidrobio.com.py:
+   - Verde primary  #1a7a4c
+   - Verde dark     #145c39
+   - Verde light    #e8f5ee
+   - Navy           #0f1d2f
+   - Grays          #f9fafb → #111827
+
+   Notas:
+   1. Subir logo a color en: Theme → Header Logo Image
+      (al subirlo, Zoho remueve la clase "noHeaderLogo" del body)
+   2. Subir foto del invernadero como Header Background Image
+      desde: Theme → Form Header → Background
+   3. Tipografía Inter desde Google Fonts (importada arriba)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ──────────── BASE ──────────── */
+body.standardForm,
+body.standardForm * {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.standardForm {
+  background: #f9fafb !important;
+  color: #111827 !important;
+}
+
+/* ──────────── HEADER (banner con foto + overlay) ──────────── */
+.zfFormHeader {
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(15, 29, 47, 0.78) 0%,
+      rgba(15, 29, 47, 0.55) 50%,
+      rgba(26, 122, 76, 0.65) 100%
+    ),
+    url('REEMPLAZAR_CON_URL_HERO_GREENHOUSE_JPG');
+  background-size: cover !important;
+  background-position: center !important;
+  padding: 56px 24px 80px !important;
+  text-align: center !important;
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+.zfFormHeader .logoPosition { text-align: center !important; }
+
+.zfFormHeader .hdrLogoImgDiv img {
+  max-height: 56px !important;
+  width: auto !important;
+  margin: 0 auto 28px !important;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25));
+}
+
+.zfFormHeader .headerCont h2 {
+  color: #ffffff !important;
+  font-size: 2.25rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 0 12px 0 !important;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+.zfFormHeader .headerCont .formTitleDescription,
+.zfFormHeader .headerCont p {
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-size: 1.0625rem !important;
+  font-weight: 400 !important;
+  max-width: 520px !important;
+  margin: 0 auto !important;
+}
+
+/* ──────────── FORM CONTAINER (card blanca) ──────────── */
+.zf-tempContDiv,
+.zf-tempContTabular {
+  max-width: 720px !important;
+  margin: -48px auto 64px !important;
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 40px rgba(15, 29, 47, 0.10),
+              0 2px 6px rgba(15, 29, 47, 0.04) !important;
+  padding: 8px !important;
+  position: relative;
+  z-index: 2;
+}
+
+/* ──────────── FIELD LABELS ──────────── */
+.zf-labelName,
+label[for] {
+  color: #374151 !important;
+  font-size: 0.8125rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+  margin-bottom: 6px !important;
+}
+
+.zf-symbols,
+.zf-important {
+  color: #dc2626 !important;
+  font-size: 0.75rem !important;
+}
+
+/* ──────────── INPUTS ──────────── */
+.zf-input,
+.zf-form-sBox,
+.zf-form-sBoxLargeBox,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="url"],
+textarea,
+select {
+  width: 100% !important;
+  padding: 11px 14px !important;
+  font-size: 0.9375rem !important;
+  font-family: 'Inter', sans-serif !important;
+  color: #111827 !important;
+  background: #ffffff !important;
+  border: 1.5px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.zf-input:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  border-color: #1a7a4c !important;
+  box-shadow: 0 0 0 3px rgba(26, 122, 76, 0.15) !important;
+}
+
+textarea {
+  min-height: 88px !important;
+  resize: vertical !important;
+}
+
+/* Placeholder color */
+::placeholder { color: #9ca3af !important; opacity: 1; }
+
+/* ──────────── RADIO / CHECKBOX (estilo "chip") ──────────── */
+.zf-radioBtn,
+.zf-checkBtn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 9px 14px !important;
+  margin: 0 8px 8px 0 !important;
+  background: #ffffff !important;
+  border: 1.5px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  font-size: 0.875rem !important;
+  color: #374151 !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.zf-radioBtn:hover,
+.zf-checkBtn:hover {
+  border-color: #1a7a4c !important;
+  background: #e8f5ee !important;
+}
+
+.zf-radioBtn input,
+.zf-checkBtn input { accent-color: #1a7a4c !important; }
+
+/* Selected state (Zoho aplica .zf-checked o similar) */
+.zf-radioBtn.zf-checked,
+.zf-checkBtn.zf-checked,
+.zf-radioBtn input:checked + label,
+.zf-checkBtn input:checked + label {
+  border-color: #1a7a4c !important;
+  background: #e8f5ee !important;
+  color: #145c39 !important;
+  font-weight: 500 !important;
+}
+
+/* ──────────── HELPER / DESCRIPTION TEXT ──────────── */
+.zf-instruction,
+.zf-fieldDescription {
+  color: #6b7280 !important;
+  font-size: 0.75rem !important;
+  margin-top: 4px !important;
+}
+
+/* ──────────── SECTION HEADERS (subtítulos) ──────────── */
+.zf-tempHeadrTxt,
+.zf-overflowYAuto h3 {
+  color: #0f1d2f !important;
+  font-size: 1.0625rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  padding: 24px 24px 4px !important;
+  border-top: 1px solid #f3f4f6;
+}
+
+.zf-tempHeadrTxt:first-of-type { border-top: none; }
+
+/* ──────────── SUBMIT BUTTON ──────────── */
+.zf-submitColor,
+.zf-submitBtn,
+button[type="submit"],
+.zf-templateWrapper button {
+  background: #1a7a4c !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 14px 28px !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  font-family: 'Inter', sans-serif !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  min-width: 200px !important;
+}
+
+.zf-submitColor:hover,
+.zf-submitBtn:hover,
+button[type="submit"]:hover {
+  background: #145c39 !important;
+  box-shadow: 0 8px 24px rgba(26, 122, 76, 0.28) !important;
+}
+
+.zf-submitColor:active { transform: translateY(1px); }
+
+/* Reset + Cancel buttons (variant secondary) */
+.zf-resetColor,
+.zf-resetBtn,
+button[type="reset"] {
+  background: #ffffff !important;
+  color: #374151 !important;
+  border: 1.5px solid #e5e7eb !important;
+  border-radius: 10px !important;
+  padding: 14px 24px !important;
+  font-weight: 500 !important;
+}
+
+.zf-resetColor:hover { border-color: #d1d5db !important; background: #f9fafb !important; }
+
+/* ──────────── ERROR MESSAGES ──────────── */
+.zf-errorMessage,
+.zf-tooltip {
+  color: #dc2626 !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  margin-top: 4px !important;
+}
+
+.zf-input.zf-error,
+input.zf-error {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12) !important;
+}
+
+/* ──────────── TERMS & CONDITIONS BLOCK ──────────── */
+.zf-termsConditions,
+.zf-termsAndConditions {
+  background: #f9fafb !important;
+  padding: 20px 24px !important;
+  border-radius: 10px !important;
+  border: 1px solid #f3f4f6 !important;
+  font-size: 0.875rem !important;
+  color: #374151 !important;
+  line-height: 1.5 !important;
+}
+
+.zf-termsConditions a,
+.zf-termsAndConditions a {
+  color: #1a7a4c !important;
+  text-decoration: underline !important;
+  font-weight: 500 !important;
+}
+
+.zf-termsConditions a:hover { color: #145c39 !important; }
+
+/* ──────────── PROGRESS BAR (si form es multi-step) ──────────── */
+.zf-progressContainer,
+.zf-progress-bar {
+  background: #f3f4f6 !important;
+  border-radius: 999px !important;
+  height: 6px !important;
+  overflow: hidden !important;
+}
+
+.zf-progressFill,
+.zf-progress-bar-fill {
+  background: linear-gradient(90deg, #1a7a4c 0%, #22c55e 100%) !important;
+  height: 100% !important;
+  transition: width 0.3s ease !important;
+}
+
+/* ──────────── THANK YOU PAGE ──────────── */
+.zf-thankyouMsg,
+.zf-thankYouMsg {
+  text-align: center !important;
+  padding: 48px 24px !important;
+  color: #111827 !important;
+}
+
+.zf-thankyouMsg h1,
+.zf-thankyouMsg h2 {
+  color: #1a7a4c !important;
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 12px !important;
+}
+
+/* ──────────── MOBILE ──────────── */
+@media (max-width: 640px) {
+  .zfFormHeader { padding: 36px 20px 64px !important; }
+  .zfFormHeader .hdrLogoImgDiv img { max-height: 44px !important; margin-bottom: 20px !important; }
+  .zfFormHeader .headerCont h2 { font-size: 1.625rem !important; }
+  .zfFormHeader .headerCont p { font-size: 0.9375rem !important; }
+
+  .zf-tempContDiv,
+  .zf-tempContTabular {
+    margin: -36px 12px 32px !important;
+    border-radius: 12px !important;
+  }
+
+  .zf-radioBtn,
+  .zf-checkBtn {
+    width: 100%;
+    margin-right: 0 !important;
+  }
+
+  .zf-submitColor,
+  button[type="submit"] {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+/* ──────────── REMOVE ZOHO BRANDING (opcional, si tu plan lo permite) ──────────── */
+.zf-formFooter,
+.zf-poweredBy { display: none !important; }
